@@ -1,0 +1,128 @@
+<div id="kt_drawer_chat" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="chat" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_chat_close">
+  <div class="card w-100 rounded-0 border-0" id="kt_drawer_chat_messenger">
+    <div class="card-header pe-5" id="kt_drawer_chat_messenger_header">
+      <div class="card-title">
+        <div class="d-flex justify-content-center flex-column me-3">
+          <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">Notification</a>
+          <div class="mb-0 lh-1">
+            <span class="fs-7 fw-semibold text-muted">You have {{notifications.count}} Notification</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-toolbar">
+        <div class="me-2">
+          <button class="btn btn-sm btn-icon btn-active-light-primary" ng-click="app.openAllNotification(this)" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+            <i class="bi bi-envelope-open-fill fs-3"></i>
+          </button>
+        </div>
+        <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_chat_close" ng-click="app.startNotification(this)">
+          <span class="svg-icon svg-icon-2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+              <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body" id="kt_drawer_chat_messenger_body">
+      <div class="scroll-y me-n5 pe-5" data-kt-element="messages" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer" data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body" data-kt-scroll-offset="0px">
+        <div class="d-flex justify-content-start mb-10">
+          <div class="table-responsive">
+            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+              <tbody class="text-gray-600 fw-semibold">
+                <tr ng-repeat="n in notifications.data">
+                  <td class="d-flex align-items-center">
+                    <div class="symbol symbol-circle symbol-35px overflow-hidden me-3">
+                      <a href="../../demo38/dist/apps/user-management/users/view.html">
+                        <div class="symbol-label">
+                          <img src="assets/images/profiles/300-2.jpg" alt="Emma Smith" class="w-100">
+                        </div>
+                      </a>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <a href="../../demo38/dist/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1"><small>{{ n.user_id.fullname }}</small></a>
+                      <span><small>{{ n.description }}</small></span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="badge badge-light fw-bold">{{ n.ago }}</div>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto me-5" ng-click="notify.viewNotification(this, n)">
+                      <span class="svg-icon svg-icon-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                          <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                          <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                        </svg>
+                      </span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="app-navbar-item ms-1 ms-md-3">
+  <div class="btn btn-icon btn-custom btn-color-gray-600 btn-active-light btn-active-color-primary w-35px h-35px w-md-40px h-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+    <i class="fonticon-calendar fs-2"></i>
+  </div>
+  <div class="menu menu-sub menu-sub-dropdown menu-column w-350px w-lg-375px" data-kt-menu="true">
+    <div class="d-flex flex-column bgi-no-repeat rounded-top" style="background-image:url('assets/media/misc/menu-header-bg.jpg')">
+      <h3 class="text-white fw-semibold px-9 mt-10 mb-6">Notifications
+      <span class="fs-8 opacity-75 ps-3">24 reports</span></h3>
+      <ul class="nav nav-line-tabs nav-line-tabs-2x nav-stretch fw-semibold px-9">
+        <li class="nav-item">
+          <a class="nav-link text-white opacity-75 opacity-state-100 pb-4" data-bs-toggle="tab" href="#kt_topbar_notifications_1">Alerts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white opacity-75 opacity-state-100 pb-4 active" data-bs-toggle="tab" href="#kt_topbar_notifications_2">Updates</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white opacity-75 opacity-state-100 pb-4" data-bs-toggle="tab" href="#kt_topbar_notifications_3">Logs</a>
+        </li>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane fade" id="kt_topbar_notifications_1" role="tabpanel">
+        <div class="scroll-y mh-325px my-5 px-8">
+          <div class="d-flex flex-stack py-4">
+            <div class="d-flex align-items-center">
+              <div class="symbol symbol-35px me-4">
+                <span class="symbol-label bg-light-primary">
+                  <span class="svg-icon svg-icon-2 svg-icon-primary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path opacity="0.3" d="M11 6.5C11 9 9 11 6.5 11C4 11 2 9 2 6.5C2 4 4 2 6.5 2C9 2 11 4 11 6.5ZM17.5 2C15 2 13 4 13 6.5C13 9 15 11 17.5 11C20 11 22 9 22 6.5C22 4 20 2 17.5 2ZM6.5 13C4 13 2 15 2 17.5C2 20 4 22 6.5 22C9 22 11 20 11 17.5C11 15 9 13 6.5 13ZM17.5 13C15 13 13 15 13 17.5C13 20 15 22 17.5 22C20 22 22 20 22 17.5C22 15 20 13 17.5 13Z" fill="currentColor" />
+                      <path d="M17.5 16C17.5 16 17.4 16 17.5 16L16.7 15.3C16.1 14.7 15.7 13.9 15.6 13.1C15.5 12.4 15.5 11.6 15.6 10.8C15.7 9.99999 16.1 9.19998 16.7 8.59998L17.4 7.90002H17.5C18.3 7.90002 19 7.20002 19 6.40002C19 5.60002 18.3 4.90002 17.5 4.90002C16.7 4.90002 16 5.60002 16 6.40002V6.5L15.3 7.20001C14.7 7.80001 13.9 8.19999 13.1 8.29999C12.4 8.39999 11.6 8.39999 10.8 8.29999C9.99999 8.19999 9.20001 7.80001 8.60001 7.20001L7.89999 6.5V6.40002C7.89999 5.60002 7.19999 4.90002 6.39999 4.90002C5.59999 4.90002 4.89999 5.60002 4.89999 6.40002C4.89999 7.20002 5.59999 7.90002 6.39999 7.90002H6.5L7.20001 8.59998C7.80001 9.19998 8.19999 9.99999 8.29999 10.8C8.39999 11.5 8.39999 12.3 8.29999 13.1C8.19999 13.9 7.80001 14.7 7.20001 15.3L6.5 16H6.39999C5.59999 16 4.89999 16.7 4.89999 17.5C4.89999 18.3 5.59999 19 6.39999 19C7.19999 19 7.89999 18.3 7.89999 17.5V17.4L8.60001 16.7C9.20001 16.1 9.99999 15.7 10.8 15.6C11.5 15.5 12.3 15.5 13.1 15.6C13.9 15.7 14.7 16.1 15.3 16.7L16 17.4V17.5C16 18.3 16.7 19 17.5 19C18.3 19 19 18.3 19 17.5C19 16.7 18.3 16 17.5 16Z" fill="currentColor" />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <div class="mb-0 me-2">
+                <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bold">Project Alice</a>
+                <div class="text-gray-400 fs-7">Phase 1 development</div>
+              </div>
+            </div>
+            <span class="badge badge-light fs-8">1 hr</span>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="kt_topbar_notifications_3" role="tabpanel">
+        <div class="scroll-y mh-325px my-5 px-8">
+          <div class="d-flex flex-stack py-4">
+            <div class="d-flex align-items-center me-2">
+              <span class="w-70px badge badge-light-success me-4">200 OK</span>
+              <a href="#" class="text-gray-800 text-hover-primary fw-semibold">New order</a>
+            </div>
+            <span class="badge badge-light fs-8">Just now</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,186 @@
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
+      <li class="nav-item">
+        <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_user_view_overview_tab">Expendable Properties</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_view_overview_security">Semi-Expendable Properties</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+        <div class="card" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+          <div class="card-header border-0 pt-6">
+            <div class="card-title">
+              <div class="d-flex align-items-center position-relative my-1">
+                <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                  </svg>
+                </span>
+                <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Machine/Equipment" ng-model="searchFurnitureAndFixture"/>
+              </div>
+            </div>
+          </div>
+          <div class="card-body py-4">
+            <div class="table-responsive">
+              <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                <thead>
+                  <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                    <th><strong>#</strong></th>
+                    <th><strong>Article</strong></th>
+                    <th><strong>Location</strong></th>
+                    <th><strong>Condition</strong></th>
+                    <th><strong>Remarks</strong></th>
+                    <th><strong>Status</strong></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-600 fw-semibold">
+                  <tr ng-repeat="ff in filterData = (furnitureAndFixtures | filter:searchFurnitureAndFixture) | pagination: currentPage:pageSize">
+                    <td><strong>{{ ff.list_no }}</strong></td>
+                    <td class="d-flex align-items-center">
+                      <div class="fw-semibold ms-5">
+                        <a href="#" class="fs-5 fw-bold text-dark text-hover-primary">{{ ff.article_id.name }}</a>
+                        <div class="fs-7 text-muted">Property No.:
+                        <a href="#">{{ ff.property_number }}</a></div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="badge badge-light fw-bold">{{ ff.location.building_and_structure_location }}</div>
+                    </td>
+                    <td>{{ ff.furniture_and_fixture_condition }}</td>
+                    <td>{{ ff.remarks }}</td>
+                    <td>
+                      <div class="badge badge-light-{{ ff.status_color }} fw-bold">{{ ff.status }}</div>
+                    </td>
+                    <td class="text-end" style="position: relative;">
+                      <div class="btn-group dropstart">
+                        <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="svg-icon svg-icon-5 m-0">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect x="10" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                              <rect x="17" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                              <rect x="3" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                            </svg>
+                          </span>
+                        </button>
+                        <div class="dropdown-menu menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4">
+                          <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3" data-kt-filemanager-table="rename" ng-click="app.furnitureAndFixture(this, ff)">View</a>
+                          </div>
+                          <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3" data-kt-filemanager-table="rename" ng-click="app.printPropSticker(this, ff)">Prop Sticker</a>
+                          </div>
+                          <div class="menu-item px-3">
+                            <a href="#" class="menu-link text-danger px-3" data-kt-filemanager-table-filter="delete_row" ng-click="app.delete(this, ff)">Delete</a>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="6" style="text-align: center;">
+                      <div class="pull-right"><ul uib-pagination direction-links="false" boundary-links="true" total-items="filterData.length" ng-model="currentPage" max-size="maxSize"></ul></div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
+        <div class="card" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+          <div class="card-header border-0 pt-6">
+            <div class="card-title">
+              <div class="d-flex align-items-center position-relative my-1">
+                <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                  </svg>
+                </span>
+                <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Machine/Equipment" ng-model="searchFurnitureAndFixturesSemiExpandable"/>
+              </div>
+            </div>
+          </div>
+          <div class="card-body py-4">
+            <div class="table-responsive">
+              <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                <thead>
+                  <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                    <th><strong>#</strong></th>
+                    <th><strong>Article</strong></th>
+                    <th><strong>Location</strong></th>
+                    <th><strong>Condition</strong></th>
+                    <th><strong>Remarks</strong></th>
+                    <th><strong>Status</strong></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-600 fw-semibold">
+                  <tr ng-repeat="ff in filterDataSE = (furnitureAndFixturesSemiExpandable | filter:searchFurnitureAndFixturesSemiExpandable) | paginationSE: currentPageSE:pageSizeSE">
+                    <td><strong>{{ ff.list_no }}</strong></td>
+                    <td class="d-flex align-items-center">
+                      <div class="fw-semibold ms-5">
+                        <a href="#" class="fs-5 fw-bold text-dark text-hover-primary">{{ ff.article_id.name }}</a>
+                        <div class="fs-7 text-muted">Property No.:
+                        <a href="#">{{ ff.property_number }}</a></div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="badge badge-light fw-bold">{{ ff.furniture_and_fixture_location }}</div>
+                    </td>
+                    <td>{{ ff.furniture_and_fixture_condition }}</td>
+                    <td>{{ ff.remarks }}</td>
+                    <td>
+                      <div class="badge badge-light-{{ ff.status_color }} fw-bold">{{ ff.status }}</div>
+                    </td>
+                    <td class="text-end" style="position: relative;">
+                      <div class="btn-group dropstart">
+                        <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="svg-icon svg-icon-5 m-0">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect x="10" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                              <rect x="17" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                              <rect x="3" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                            </svg>
+                          </span>
+                        </button>
+                        <div class="dropdown-menu menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4">
+                          <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3" data-kt-filemanager-table="rename" ng-click="app.furnitureAndFixture(this, ff)">View</a>
+                          </div>
+                          <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3" data-kt-filemanager-table="rename" ng-click="app.printPropSticker(this, ff)">Prop Sticker</a>
+                          </div>
+                          <div class="menu-item px-3">
+                            <a href="#" class="menu-link text-danger px-3" data-kt-filemanager-table-filter="delete_row" ng-click="app.delete(this, ff)">Delete</a>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="6" style="text-align: center;">
+                      <div class="pull-right"><ul uib-pagination direction-links="false" boundary-links="true" total-items="filterDataSE.length" ng-model="currentPageSE" max-size="maxSize"></ul></div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="qr_code" style="display:none"></div>

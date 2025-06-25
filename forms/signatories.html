@@ -1,0 +1,63 @@
+
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="card mb-5 mb-xl-10" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+      <div id="kt_account_settings_profile_details" class="collapse show">
+        <form class="form" autocomplete="off" name="formHolder.signatory">
+          <div class="card-body">
+            <div class="row mb-6">
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">First Name<label class="text-danger">*</label></label>
+                <input type="text" name="first_name" class="form-control form-control-lg" placeholder="First Name" ng-disabled="controls.ok.btn" ng-model="signatory.first_name" ng-class="{'is-invalid': formHolder.signatory.first_name.$touched && formHolder.signatory.first_name.$invalid}" required/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Middle Name<label class="text-danger">*</label></label>
+                <input type="text" name="middle_name" class="form-control form-control-lg" placeholder="Middle Name" ng-disabled="controls.ok.btn" ng-model="signatory.middle_name" ng-class="{'is-invalid': formHolder.signatory.middle_name.$touched && formHolder.signatory.middle_name.$invalid}" required/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Last Name<label class="text-danger">*</label></label>
+                <input type="text" name="last_name" class="form-control form-control-lg" placeholder="Last Name" ng-disabled="controls.ok.btn" ng-model="signatory.last_name" ng-class="{'is-invalid': formHolder.signatory.last_name.$touched && formHolder.signatory.last_name.$invalid}" required/>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Office<label class="text-danger">*</label></label>
+                <input type="text" name="office" class="form-control form-control-lg" placeholder="Office" ng-disabled="controls.ok.btn" ng-model="signatory.office" ng-class="{'is-invalid': formHolder.signatory.office.$touched && formHolder.signatory.office.$invalid}" required/>
+              </div>
+              <div class="col-lg-3 fv-row">
+                <label class="form-label">Position<label class="text-danger">*</label></label>
+                <input type="text" name="position" class="form-control form-control-lg" placeholder="Position" ng-disabled="controls.ok.btn" ng-model="signatory.position" ng-class="{'is-invalid': formHolder.signatory.position.$touched && formHolder.signatory.position.$invalid}" required/>
+              </div>
+              <div class="col-lg-3 fv-row">
+                <label class="form-label">Date of Assumption<label class="text-danger">*</label></label>
+                <input type="date" name="date_of_assumption" class="form-control form-control-lg" placeholder="Date of Assumption" ng-disabled="controls.ok.btn" ng-model="signatory.date_of_assumption" ng-class="{'is-invalid': formHolder.signatory.date_of_assumption.$touched && formHolder.signatory.date_of_assumption.$invalid}" required/>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Code<label class="text-danger"></label></label>
+                <input type="text" name="code" class="form-control form-control-lg" placeholder="Code" ng-disabled="controls.ok.btn" ng-model="signatory.code" ng-class="{'is-invalid': formHolder.signatory.code.$touched && formHolder.signatory.code.$invalid}" required/>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Module<label class="text-danger"></label></label>
+                <input type="text" name="module" class="form-control form-control-lg" placeholder="Module" ng-disabled="controls.ok.btn" ng-model="signatory.module" ng-class="{'is-invalid': formHolder.signatory.module.$touched && formHolder.signatory.module.$invalid}" required/>
+              </div>
+            </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">{{ controls.cancel.label }}</button>
+      <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)" ng-disabled="controls.ok.btn">
+        <span class="indicator-label">{{ controls.ok.label }}</span>
+        <span class="indicator-progress">Please wait...
+        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+      </button>
+    </div>
+  </div>
+</div>

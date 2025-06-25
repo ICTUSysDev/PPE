@@ -1,0 +1,80 @@
+<div class="container">
+  <h1 class="d-flex justify-content-center align-items-center mb-7">Physical Inventory</h1>
+  <div class="row">
+    <div class="d-flex flex-stack pb-3">
+      <div class="row mb-6">
+        <div class="row">
+          <div class="col-lg-3 fv-row">
+            <p class="text-muted fs-12">Property #</p>
+          </div>
+          <div class="col-lg-9 fv-row">
+            <p class="text-gray-700 fw-semibold fs-12">{{ viewHistory.machinery_equipment.property_number }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 fv-row">
+            <p class="text-muted fs-12">Details</p>
+          </div>
+          <div class="col-lg-9 fv-row">
+            <p class="text-gray-700 fw-semibold fs-12">{{viewHistory.article_id.name}} | {{viewHistory.brand_id.name}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 fv-row">
+            <p class="text-muted fs-12">Acquisition Date</p>
+          </div>
+          <div class="col-lg-9 fv-row">
+            <p class="text-gray-700 fw-semibold fs-12">{{viewHistory.machinery_equipment.acquisition_date}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 fv-row">
+            <p class="text-muted fs-12">Description</p>
+          </div>
+          <div class="col-lg-9 fv-row">
+            <p class="text-gray-700 fw-semibold fs-12">{{viewHistory.machinery_equipment.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-12">
+      <table class="table align-middle table-row-dashed fs-6 gy-3 editableTable" id="kt_table_widget_4_table">
+        <thead>
+          <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+            <th class="min-w-25px">#</th>
+            <th class="text-center min-w-100px">Inventory Date</th>
+            <th class="text-center min-w-100px">Location</th>
+            <th class="text-center min-w-100px">Condition</th>
+            <th class="text-center min-w-100px">Remarks</th>
+            <th class="text-center min-w-125px">Inventory by:</th>
+          </tr>
+        </thead>
+        <tbody class="fw-bold text-gray-800 text-center">
+          <tr ng-repeat="pcl in viewHistory.physical_count_list">
+            <td>{{$index+1}}</td>
+            <td>{{ pcl.inventory_date }}</td>
+            <td>{{ pcl.location }}</td>
+            <td>{{ pcl.equipment_condition }}</td>
+            <td>{{ pcl.remarks }}</td>
+            <td>{{ pcl.inventory_by.name }}</td>
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+    <span class="text-muted fs-8">*Last five Physical Inventory performed. Sorted from latest inventory.</span>
+  </div>
+</div>
+<script>
+$( document ).ready(function() {
+  
+});
+</script>
+
+<style>
+  table, th, td {
+    border: 1px solid #6D6D80 !important;
+    text-align: center !important;
+  }
+</style>

@@ -1,0 +1,44 @@
+
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="card mb-5 mb-xl-10" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+      <div id="kt_account_settings_profile_details" class="collapse show">
+        <form class="form" autocomplete="off" name="formHolder.supplier">
+          <div class="card-body">
+            <div class="row mb-6">
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Supplier Name<label class="text-danger">*</label></label>
+                <input type="text" name="name" class="form-control form-control-lg" placeholder="Supplier Name" ng-disabled="controls.ok.btn" ng-model="supplier.name" ng-class="{'is-invalid': formHolder.supplier.name.$touched && formHolder.supplier.name.$invalid}" required/>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Address<label class="text-danger">*</label></label>
+                <input type="text" name="address" class="form-control form-control-lg" placeholder="Address" ng-disabled="controls.ok.btn" ng-model="supplier.address" ng-class="{'is-invalid': formHolder.supplier.address.$touched && formHolder.supplier.address.$invalid}" required/>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Contact Person<label class="text-danger">*</label></label>
+                <input type="text" name="contact_person" class="form-control form-control-lg" placeholder="Contact Person" ng-disabled="controls.ok.btn" ng-model="supplier.contact_person" ng-class="{'is-invalid': formHolder.supplier.contact_person.$touched && formHolder.supplier.contact_person.$invalid}" required/>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Contact number<label class="text-danger">*</label></label>
+                <input type="number" name="contact_no" class="form-control form-control-lg" placeholder="Contact Number" ng-disabled="controls.ok.btn" ng-model="supplier.contact_no" ng-class="{'is-invalid': formHolder.supplier.contact_no.$touched && formHolder.supplier.contact_no.$invalid}" required/>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">{{ controls.cancel.label }}</button>
+            <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)" ng-disabled="controls.ok.btn">
+              <span class="indicator-label">{{ controls.ok.label }}</span>
+              <span class="indicator-progress">Please wait...
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

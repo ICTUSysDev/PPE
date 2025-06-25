@@ -1,0 +1,109 @@
+
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="card mb-5 mb-xl-10" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+      <div id="kt_account_settings_profile_details" class="collapse show">
+        <form class="form" autocomplete="off" name="formHolder.brand">
+          <div class="card-body">
+            <div class="row mb-6">
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Article<label class="text-danger">*</label></label>
+                <select name="article_id" aria-label="Select Article" data-control="select2" data-placeholder="Select Article" class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="a.name + ' (' + (a.chart_of_account.account_title) + ')' for a in articles track by a.id" ng-model="brand.article_id" ng-change="app.filterBrand(this, brand.article_id.id)" ng-class="{'is-invalid': formHolder.brand.article_id.$touched && formHolder.brand.article_id.$invalid}" required>
+                  <option value="" disabled>Select Article</option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Name<label class="text-danger">*</label>&nbsp<label class="text-danger" ng-show="isError">Brand Name Already Exist!</label></label>
+                <input type="text" name="name" class="form-control form-control-lg" placeholder="Name" ng-disabled="controls.ok.btn" ng-model="brand.name" ng-change="app.checkBrandName(this, brand)" ng-class="{'is-invalid': formHolder.brand.name.$touched && formHolder.brand.name.$invalid}" required/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Description<label class="text-danger">*</label></label>
+                <input type="text" name="description" class="form-control form-control-lg" placeholder="Description" ng-disabled="controls.ok.btn" ng-model="brand.description" ng-class="{'is-invalid': formHolder.brand.description.$touched && formHolder.brand.description.$invalid}" required/>
+              </div>
+            </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+              <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.clear(this)" ng-disabled="controls.cancel.btn">Clear</button>
+              <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)" ng-disabled="disableSave">
+                <span class="indicator-label">{{ controls.ok.label }}</span>
+                <span class="indicator-progress">Please wait...
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+        <div class="card-header border-0 pt-6">
+          <div class="card-title">
+            <div class="d-flex align-items-center position-relative my-1">
+              <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                  <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                </svg>
+              </span>
+              <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search brand" ng-model="searchBrand"/>
+            </div>
+          </div>
+        </div>
+        <div class="card-body py-4">
+          <div class="table-responsive">
+            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+              <thead>
+                <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                  <th><strong>#</strong></th>
+                  <th><strong>Name</strong></th>
+                  <th><strong>Description</strong></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-600 fw-semibold">
+                <tr ng-repeat="fb in filterData = (filteredBrands | filter:searchBrand ) | pagination: currentPage:pageSize">
+                  <td>{{ fb.list_no }}</td>
+                  <td>
+                    <div class="d-flex flex-column">
+                      <a class="text-gray-800 text-hover-primary">{{ fb.name }}</a>
+                    </div>
+                  </td>
+                  <td>{{ fb.description }}</td>
+                  <td class="text-end" style="position: relative;">
+                    <div class="btn-group dropstart">
+                      <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="svg-icon svg-icon-5 m-0">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                            <rect x="17" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                            <rect x="3" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                          </svg>
+                        </span>
+                      </button>
+                      <div class="dropdown-menu menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4">
+                        <div class="menu-item px-3">
+                          <a href="#" class="menu-link px-3" data-kt-filemanager-table="rename" ng-click="app.brand(this,fb)">View</a>
+                        </div>
+                        <div class="menu-item px-3">
+                          <a href="#" class="menu-link text-danger px-3" data-kt-filemanager-table-filter="delete_row" ng-click="app.delete(this, fb)">Delete</a>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="6" style="text-align: center;">
+                    <div class="pull-right"><ul uib-pagination direction-links="false" boundary-links="true" total-items="filterData.length" ng-model="currentPage" max-size="maxSize"></ul></div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

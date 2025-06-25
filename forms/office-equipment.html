@@ -1,0 +1,328 @@
+
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<!-- Include the core FilePond CSS and JavaScript -->
+<link href="assets/css/filepond.css" rel="stylesheet">
+<script src="assets/js/filepond.js"></script>
+<script src="assets/js/filepond-plugin-file-validate-type.js"></script>
+<script src="assets/js/filepond-plugin-file-validate-size.js"></script>
+<script src="assets/js/filepond-plugin-image-validate-size.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
+      <li class="nav-item">
+        <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_user_view_overview_tab">Machine/Equipment Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_view_overview_security">Parts/Serial No.</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_upload_files">Upload Files</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_assigned_to">Assigned to</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+        <div class="card card-flush mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+          <form class="form" autocomplete="off" name="formHolder.office_equipment">
+            <div class="card-body">
+              <div class="row mb-6">
+                <div class="row">
+                  <div class="col-lg-6 fv-row">
+                    <label class="form-label">Office<label class="text-danger">*</label></label>
+                    <select name="office_id" aria-label="Select Office" data-control="select2" data-placeholder="Select Office..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="o.name + ' (' + (o.shortname) + ')' for o in offices track by o.id" ng-model="office_equipment.office_id" ng-class="{'is-invalid': formHolder.office_equipment.office_id.$touched && formHolder.office_equipment.office_id.$invalid}" ng-change="app.filterOfficer(this,office_equipment.office_id)" required>
+                      <option value="" disabled>Select Office...</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 fv-row">
+                    <label class="form-label">Charts of Account<label class="text-danger">*</label></label>
+                    <select name="coa_description_id" aria-label="Select COA Description" data-control="select2" data-placeholder="Select Charts of Account..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="cd.account_title + ' (' + (cd.code) + ')' disable when cd.disable for cd in coaDescription track by cd.id" ng-change="app.filterArticle(this, office_equipment.coa_description_id)" ng-model="office_equipment.coa_description_id" ng-class="{'is-invalid': formHolder.office_equipment.coa_description_id.$touched && formHolder.office_equipment.coa_description_id.$invalid}" required>
+                      <option value="" disabled>Select Charts of Account...</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <br><hr><br>
+              <div class="row mb-6">
+                <div class="col-lg-6 fv-row">
+                  <label class="form-label">Article<label class="text-danger">*</label></label>
+                  <select name="article_id" aria-label="Select Article" data-control="select2" data-placeholder="Select Article..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="fa.name for fa in filteredArticle track by fa.id" ng-change="app.filterBrand(this,office_equipment.article_id)" ng-model="office_equipment.article_id" ng-class="{'is-invalid': formHolder.office_equipment.article_id.$touched && formHolder.office_equipment.article_id.$invalid}" required>
+                    <option value="" disabled>Select Article...</option>
+                  </select>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="form-label">Brand</label>
+                  <select name="brand_id" aria-label="Select Brand" data-control="select2" data-placeholder="Select Brand..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="fb.name for fb in filteredBrand track by fb.id" ng-model="office_equipment.brand_id">
+                    <option value="" disabled>Select Brand...</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-12 fv-row">
+                  <label class="form-label">Description<label class="text-danger">*</label></label>
+                  <textarea name="description" placeholder="Description" class="form-control form-control-lg" ng-disabled="controls.ok.btn" ng-model="office_equipment.description" ng-class="{'is-invalid': formHolder.office_equipment.description.$touched && formHolder.office_equipment.description.$invalid}" required></textarea>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-4 fv-row">
+                  <label class="form-label">Mode of Acquisition<label class="text-danger">*</label></label>
+                  <select name="mode_of_acquisition" aria-label="Select Mode of Acquisition" data-control="select2" data-placeholder="Select Mode of Acquisition..." class="form-select" ng-disabled="controls.ok.btn" ng-model="office_equipment.mode_of_acquisition" ng-class="{'is-invalid': formHolder.office_equipment.mode_of_acquisition.$touched && formHolder.office_equipment.mode_of_acquisition.$invalid}" required>
+                    <option value="Procurement">Procurement</option>
+                    <option value="Donate">Donation</option>
+                  </select>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="form-label">Acquisition Date<label class="text-danger">*</label></label>
+                  <input type="date" name="acquisition_date" class="form-control form-control-lg" placeholder="Acquisition Date" ng-disabled="controls.ok.btn" ng-model="office_equipment.acquisition_date" ng-class="{'is-invalid': formHolder.office_equipment.acquisition_date.$touched && formHolder.office_equipment.acquisition_date.$invalid}" required/>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="form-label">Acquisition Cost<label class="text-danger">*</label>&nbsp<label class="text-danger" ng-show="isError">Amount must be 50,000 Above</label></label>
+                  <input type="number" name="acquisition_cost" class="form-control form-control-lg" placeholder="Acquisition Cost" ng-disabled="controls.ok.btn" ng-model="office_equipment.acquisition_cost" ng-change="app.checkCost(this, office_equipment.acquisition_cost)" ng-class="{'is-invalid': formHolder.office_equipment.acquisition_cost.$touched && formHolder.office_equipment.acquisition_cost.$invalid}" required/>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-6 fv-row">
+                  <label class="form-label">Fund<label class="text-danger">*</label></label>
+                  <select name="fund_id" aria-label="Select Article" data-control="select2" data-placeholder="Select Fund..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="f.name for f in funds track by f.id" ng-model="office_equipment.fund_id" ng-class="{'is-invalid': formHolder.office_equipment.fund_id.$touched && formHolder.office_equipment.fund_id.$invalid}" required>
+                    <option value="" disabled>Select Fund...</option>
+                  </select>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="form-label">Supplier<label class="text-danger">*</label></label>
+                  <select name="supplier_id" aria-label="Select Supplier" data-control="select2" data-placeholder="Select Supplier..." class="form-select" ng-disabled="controls.ok.btn" ng-options="s.name for s in suppliers track by s.id" ng-model="office_equipment.supplier_id" ng-class="{'is-invalid': formHolder.office_equipment.supplier_id.$touched && formHolder.office_equipment.supplier_id.$invalid}" required></select>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-6 fv-row">
+                  <label class="form-label">Classification<label class="text-danger">*</label></label>
+                  <input type="text" name="classification" class="form-control form-control-lg" placeholder="Classification" ng-disabled="controls.ok.btn" ng-model="office_equipment.classification" ng-class="{'is-invalid': formHolder.office_equipment.classification.$touched && formHolder.office_equipment.classification.$invalid}" required/>
+                </div>
+                <div class="col-lg-6 fv-row">
+                  <label class="form-label">Remarks<label class="text-danger">*</label></label>
+                  <select name="remarks" aria-label="Select Remarks" data-control="select2" data-placeholder="Select Remarks..." class="form-select" ng-disabled="controls.ok.btn" ng-model="office_equipment.remarks" ng-class="{'is-invalid': formHolder.office_equipment.remarks.$touched && formHolder.office_equipment.remarks.$invalid}" required>
+                    <option value="Brand New">Brand New</option>
+                    <option value="Second Hand">Second Hand</option>
+                    <option value="Refurbished">Refurbished</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+          <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">{{ controls.cancel.label }}</button>
+          <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)" ng-disabled="controls.ok.btn">
+            <span class="indicator-label">{{ controls.ok.label }}</span>
+            <span class="indicator-progress">Please wait...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+          </button>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
+        <div class="card pt-4 mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+          <div class="card-header border-0">
+            <div class="card-title">
+              <h2>Parts/Serial No.</h2>
+            </div>
+          </div>
+          <form class="form" name="formHolder.partSerialNumber">
+            <div class="card-body pt-0 pb-5">
+              <div class="d-flex flex-column flex-lg-row">
+                <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
+                  <div class="card mb-5 mb-xl-8" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+                    <div class="card-body">
+                        <div class="row mb-6">
+                          <div class="col-lg-12 fv-row">
+                            <label class="form-label">Part<label class="text-danger">*</label></label>
+                            <input type="text" name="part" class="form-control form-control-lg" placeholder="Part" ng-disabled="controls.ok.btn" ng-model="partSerialNumber.part" ng-class="{'is-invalid': formHolder.partSerialNumber.part.$touched && formHolder.partSerialNumber.part.$invalid}" required/>
+                          </div>
+                        </div>
+                        <div class="row mb-6">
+                          <div class="col-lg-12 fv-row">
+                            <label class="form-label">Serial No.<label class="text-danger">*</label>&nbsp<label class="text-danger" ng-show="isError">Duplicate Entry!</label></label>
+                            <input type="text" name="serial_number" class="form-control form-control-lg" placeholder="Serial Number" ng-disabled="controls.ok.btn" ng-model="partSerialNumber.serial_number" ng-change="app.checkSerial(this, partSerialNumber.serial_number)" ng-class="{'is-invalid': formHolder.partSerialNumber.serial_number.$touched && formHolder.partSerialNumber.serial_number.$invalid}" required/>
+                          </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-end py-6 px-9">
+                          <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)">{{ controls.cancel.label }}</button>
+                          <button type="submit" class="btn btn-primary" id="spinner_form_submitt" ng-click="app.savePartSerialNumber(this)" ng-disabled="controls.ok.btn">
+                            <span class="indicator-label">{{ controls.ok.label }}</span>
+                            <span class="indicator-progress">Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                          </button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-lg-row-fluid ms-lg-15">
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+                      <div class="card card-flush mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+                        <div class="card-body pb-5">
+                          <div class="d-flex flex-stack">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                              <thead>
+                                <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                                  <th><strong>#</strong></th>
+                                  <th><strong>Part Name</strong></th>
+                                  <th><strong>Serial No.</strong></th>
+                                </tr>
+                              </thead>
+                              <tbody class="text-gray-600 fw-semibold">
+                                <tr ng-repeat="ps in filterData = (partSerialNumbers)">
+                                  <td>{{ps.list_no}}</td>
+                                  <td class="d-flex align-items-center">
+                                    <div class="d-flex flex-column">
+                                      <a class="text-gray-800 text-hover-primary mb-1">{{ ps.part }}</a>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="badge badge-light fw-bold">{{ ps.serial_number }}</div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="kt_user_upload_files" role="tabpanel">
+        <div class="card pt-4 mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+          <div class="card-header border-0">
+            <div class="card-title">
+              <h2>Upload Files List</h2>
+            </div>
+          </div>
+          <div id="kt_app_content" class="app-content flex-column-fluid">
+            <div id="kt_app_content_container" class="app-container container-fluid">
+              <div class="card card-flush">
+                <div class="card-header pt-8">
+                  <div class="card-title">
+                    <div class="d-flex align-items-center position-relative my-1">
+                      <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                          <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                        </svg>
+                      </span>
+                      <input type="text" data-kt-filemanager-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Files" ng-model="searchFile" />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <table id="kt_file_manager_list" data-kt-filemanager-table="files" class="table align-middle table-row-dashed fs-6 gy-5">
+                    <thead>
+                      <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                        <th class="min-w-15px">#</th>
+                        <th class="min-w-15px"></th>
+                        <th class="min-w-70px">Name</th>
+                        <th class="min-w-10px">Size</th>
+                        <th class="min-w-125px">Date Uploaded</th>
+                        <th class="w-125px"></th>
+                      </tr>
+                    </thead>
+                    <tbody class="fw-semibold text-gray-600">
+                      <tr ng-repeat="fl in filterData = (fileList | filter:searchFile) | pagination: currentPage:pageSize">
+                        <td>{{ fl.list_no }}</td>
+                        <td>
+                          <img src="{{ fl.file_icon }}" class="w-50px" alt="" />
+                        </td>
+                        <td>
+                          <a href="#" class="text-gray-800 text-hover-primary">{{ fl.file_name }}</a>
+                        </div>
+                        </td>
+                        <td>{{ fl.file_size_kb }}</td>
+                        <td>{{ fl.upload_date }}</td>
+                        <td class="text-end">
+                          <div class="btn-group dropstart">
+                            <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                              <span class="svg-icon svg-icon-5 m-0">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <rect x="10" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                                  <rect x="17" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                                  <rect x="3" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                                </svg>
+                              </span>
+                            </button>
+                            <div class="dropdown-menu menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4">
+                              <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3" ng-click="app.downloadFile(this, fl.id)">Download File</a>
+                              </div>
+                              <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3" data-kt-filemanager-table="rename" ng-click="app.viewFile(this, fl.id)">View</a>
+                              </div>
+                              <div class="menu-item px-3">
+                                <a href="#" class="menu-link text-danger px-3" data-kt-filemanager-table-filter="delete_row" ng-click="app.deleteFile(this, fl)">Delete</a>
+                              </div>
+                            </div>
+                        </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="6" style="text-align: center;">
+                          <div class="pull-right"><ul uib-pagination direction-links="false" boundary-links="true" total-items="filterData.length" ng-model="currentPage" max-size="maxSize"></ul></div>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+              <button type="button" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="kt_user_assigned_to" role="tabpanel">
+        <div class="card card-flush mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+          <form class="form" autocomplete="off" name="formHolder.assignTo">
+            <div class="card-body">
+              <div class="row mb-6">
+                <div class="row">
+                  <!-- <div class="col-lg-4 fv-row">
+                    <label class="form-label">Office<label class="text-danger">*</label></label>
+                    <select name="office_id" aria-label="Select Office" data-control="select2" data-placeholder="Select Office..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="ol.name + ' (' + (ol.shortname) + ')' for ol in officesList track by ol.id" ng-model="assignTo.office_id" ng-change="app.filterOfficer(this, assignTo.office_id)" ng-disabled="true">
+                      <option value="" disabled>Select Office...</option>
+                    </select>
+                  </div> -->
+                  <div class="col-lg-6 fv-row">
+                    <label class="form-label">Accountable Officer<label class="text-danger">*</label></label>
+                    <select name="accountable_officer" aria-label="Accountable Officer" data-control="select2" data-placeholder="Accountable Officer..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="ao.name + ' (' + (ao.employee_id) + ')' for ao in accountableOfficer track by ao.id" ng-model="assignTo.accountable_officer" ng-class="{'is-invalid': formHolder.assignTo.accountable_officer.$touched && formHolder.assignTo.accountable_officer.$invalid}" required>
+                      <option value="" disabled>Select Accountable Officer...</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-6 fv-row">
+                    <label class="form-label">PAR Date<label class="text-danger">*</label></label>
+                    <input type="date" name="par_date" class="form-control form-control-lg" placeholder="PAR Date" ng-disabled="controls.ok.btn" ng-model="assignTo.par_date" ng-class="{'is-invalid': formHolder.assignTo.par_date.$touched && formHolder.assignTo.par_date.$invalid}" required/>
+                  </div>
+                </div>
+                <div class="card-footer d-flex justify-content-end py-6 px-9">
+                  <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)">{{ controls.cancel.label }}</button>
+                  <button type="submit" class="btn btn-primary" id="spinner_form_submittt" ng-click="app.assignTo(this)" ng-disabled="controls.ok.btn">
+                    <span class="indicator-label">Assign</span>
+                    <span class="indicator-progress">Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

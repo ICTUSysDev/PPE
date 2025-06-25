@@ -1,0 +1,605 @@
+
+<div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+  <div class="app-sidebar-header d-flex flex-stack d-none d-lg-flex pt-8 pb-2" id="kt_app_sidebar_header">
+    <a href="../../demo38/dist/index.html" class="app-sidebar-logo">
+      <img alt="Logo" src="assets/icons/ppe-logo.png" class="h-25px h-lg-65px d-none d-sm-inline app-sidebar-logo-default theme-light-show" />
+      <img alt="Logo" src="assets/icons/ppe-logo-dark.png" class="h-20px h-lg-65px theme-dark-show" />
+    </a>
+    <div id="kt_app_sidebar_toggle" class="app-sidebar-toggle btn btn-sm btn-icon bg-light btn-color-gray-700 btn-active-color-primary d-none d-lg-flex rotate" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="app-sidebar-minimize">
+      <span class="svg-icon svg-icon-4 rotate-180">
+        <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="14" height="3" rx="1.5" transform="matrix(-1 0 0 1 24 0)" fill="currentColor" />
+          <rect width="24" height="3" rx="1.5" transform="matrix(-1 0 0 1 24 9)" fill="currentColor" />
+          <rect width="18" height="3" rx="1.5" transform="matrix(-1 0 0 1 24 18)" fill="currentColor" />
+        </svg>
+      </span>
+    </div>
+  </div>
+  <div class="app-sidebar-navs flex-column-fluid py-6" id="kt_app_sidebar_navs">
+    <div id="kt_app_sidebar_navs_wrappers" class="app-sidebar-wrapper hover-scroll-y my-2" data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_app_sidebar_header" data-kt-scroll-wrappers="#kt_app_sidebar_navs" data-kt-scroll-offset="5px">
+      <div id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false" class="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-indention menu-state-bullet-primary">
+        <div class="menu-item mb-2">
+          <div class="menu-heading text-uppercase fs-7 fw-bold">Menu</div>
+          <div class="app-sidebar-separator separator"></div>
+        </div>
+        
+        <div ng-show="accountProfile.pages_access.dashboard.value" class="menu-item">
+          <a class="menu-link <?= ($page == 'dashboard') ? 'active' : '' ?>" href="index.php">
+            <span class="menu-icon">
+              <i class="fonticon-house fs-2"></i>
+            </span>
+            <span class="menu-title">Dashboard</span>
+          </a>
+        </div>
+        
+        <div ng-show="accountProfile.pages_access.ppe.value" data-kt-menu-trigger="click" class="menu-item here <?= ($dropdown == 'ppe') ? 'show' : '' ?> menu-accordion">
+          <span class="menu-link">
+            <span class="menu-icon">
+              <i class="fonticon-stats fs-2"></i>
+            </span>
+            <span class="menu-title">PPE</span>
+            <span class="menu-arrow"></span>
+          </span>
+          <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+
+              <div ng-show="accountProfile.pages_access.land.value" class="menu-item">
+                <a class="menu-link <?= ($page == 'land') ? 'active' : '' ?>" href="land.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Land</span>
+                </a>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.land_improvements.value" class="menu-item">
+                <a class="menu-link <?= ($page == 'land_improvements') ? 'active' : '' ?>" href="land-improvement.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Land Improvements</span>
+                </a>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.infrastructure_assets.value" class="menu-item">
+                <a class="menu-link <?= ($page == 'infrastructure_assets') ? 'active' : '' ?>" href="infrastructure-assets.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Infrastructure Assets</span>
+                </a>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.building_other_structures.value" class="menu-item">
+                <a class="menu-link <?= ($page == 'building_other_structures') ? 'active' : '' ?>" href="building-and-structures.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Building and Other Structures</span>
+                </a>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.machinery_equipment.value" class="menu-item">
+                <a class="menu-link <?= ($page == 'machinery_equipment') ? 'active' : '' ?>" href="machinery-equipment.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Machinery and Equipment</span>
+                </a>
+              </div>
+              
+              <div ng-show="accountProfile.pages_access.furniture_and_fixture.value" class="menu-item">
+                <a class="menu-link <?= ($page == 'furniture_and_fixture') ? 'active' : '' ?>" href="furniture-and-fixture.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Furniture, Fixtures and Books</span>
+                </a>
+              </div>
+
+              <!-- <div class="menu-inner flex-column collapse" id="kt_app_sidebar_menu_dashboards_collapse"> -->
+
+                <!-- <div ng-show="accountProfile.pages_access.transportation_equipment.value" class="menu-item">
+                  <a class="menu-link <?= ($page == 'transportation_equipment') ? 'active' : '' ?>" href="transportation_equipment.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Transportation Equipment</span>
+                  </a>
+                </div> -->
+
+                <!-- <div ng-show="accountProfile.pages_access.leased_assets.value" class="menu-item">
+                  <a class="menu-link <?= ($page == 'leased_assets') ? 'active' : '' ?>" href="leased_assets.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Leased Assets</span>
+                  </a>
+                </div> -->
+
+                <!-- <div ng-show="accountProfile.pages_access.leased_assets_improvements.value" class="menu-item">
+                  <a class="menu-link <?= ($page == 'leased_assets_improvements') ? 'active' : '' ?>" href="leased_assets_improvements.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Leased Assets Improvements</span>
+                  </a>
+                </div> -->
+
+                <!-- <div ng-show="accountProfile.pages_access.construction_progress.value" class="menu-item">
+                  <a class="menu-link <?= ($page == 'construction_progress') ? 'active' : '' ?>" href="construction_progress.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Construction in Progress</span>
+                  </a>
+                </div> -->
+
+                <!-- <div ng-show="accountProfile.pages_access.service_concession_assets.value" class="menu-item">
+                  <a class="menu-link <?= ($page == 'service_concession_assets') ? 'active' : '' ?>" href="service_concession_assets.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Service Concession Assets</span>
+                  </a>
+                </div> -->
+
+                <!-- <div ng-show="accountProfile.pages_access.other_ppe.value" class="menu-item">
+                  <a class="menu-link <?= ($page == 'other_ppe') ? 'active' : '' ?>" href="other_ppe.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Other Property, Plant and Equipment</span>
+                  </a>
+                </div> -->
+
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div ng-show="accountProfile.pages_access.office_equipment.value" class="menu-item">
+          <a class="menu-link <?= ($page == 'office_equipment') ? 'active' : '' ?>" href="office-equipment.php">
+            <span class="menu-icon">
+              <i class="fonticon-settings fs-2"></i>
+            </span>
+            <span class="menu-title">Office Equipment</span>
+          </a>
+        </div>
+
+        <!-- <div ng-show="accountProfile.pages_access.repair.value" class="menu-item">
+          <a class="menu-link <?= ($page == 'repair') ? 'active' : '' ?>" href="repair.php">
+            <span class="menu-icon">
+              <i class="fonticon-alignment-right fs-2"></i>
+            </span>
+            <span class="menu-title">Pre-Repair Inspection Requests</span>
+            <span class="m-menu__link-badge"><span class="badge badge-circle badge-danger">{{ notifications.repair_count.repair_count }}</span></span>
+          </a>
+        </div> -->
+
+        <!-- <div ng-show="accountProfile.pages_access.machinery_equipment_ics.value" class="menu-item">
+          <a class="menu-link <?= ($page == 'machinery_equipment_ics') ? 'active' : '' ?>" href="machinery-equipment-ics.php">
+            <span class="menu-icon">
+              <i class="fonticon-app-store fs-2"></i>
+            </span>
+            <span class="menu-title">ICS Equipment</span>
+          </a>
+        </div> -->
+
+        <div ng-show="accountProfile.pages_access.operation.value" data-kt-menu-trigger="click" class="menu-item here <?= ($dropdown == 'operation') ? 'show' : '' ?> menu-accordion">
+          <span class="menu-link" style="position: relative;">
+            <span class="menu-icon">
+              <i class="fonticon-hello fs-2"></i>
+            </span>
+            <span class="menu-title">Operation</span>
+            &nbsp<span class="right badge badge-danger" ng-show="notifications.repair_count.status">New</span>
+            <span class="menu-arrow"></span>
+          </span>
+          <div class="menu-sub menu-sub-accordion">
+
+            <div ng-show="accountProfile.pages_access.machinery_equipment_par.value" class="menu-item">
+              <a class="menu-link <?= ($page == 'machinery_equipment_par') ? 'active' : '' ?>" href="machinery-equipment-par.php">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Property Acknowledgement</span>
+              </a>
+            </div>
+<!-- 
+            <div ng-show="accountProfile.pages_access.machinery_equipment_repar.value" class="menu-item">
+              <a class="menu-link <?= ($page == 'machinery_equipment_repar') ? 'active' : '' ?>" href="machinery-equipment-repar.php">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">REPAR</span>
+              </a>
+            </div> -->
+
+            <!-- <div ng-show="accountProfile.pages_access.machinery_equipment_transfer.value" class="menu-item">
+              <a class="menu-link <?= ($page == 'machinery_equipment_transfer') ? 'active' : '' ?>" href="machinery-equipment-transfer.php">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Transfer/REPAR</span>
+              </a>
+            </div> -->
+
+            <!-- <div ng-show="accountProfile.pages_access.machinery_equipment_return.value" class="menu-item">
+              <a class="menu-link <?= ($page == 'machinery_equipment_return') ? 'active' : '' ?>" href="machinery-equipment-return.php">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Return</span>
+              </a>
+            </div> -->
+
+            <!-- <div ng-show="accountProfile.pages_access.ics_par.value" class="menu-item">
+              <a class="menu-link <?= ($page == 'ics_par') ? 'active' : '' ?>" href="ics-par.php">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">ICS</span>
+              </a>
+            </div> -->
+
+            <div ng-show="accountProfile.pages_access.physical_inventory.value" data-kt-menu-trigger="click" class="menu-item <?= ($physical_count_dropdown == 'physical_count_dropdown') ? 'show' : '' ?> menu-accordion">
+              <span class="menu-link">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Physical Inventory</span>
+                <span class="menu-arrow"></span>
+              </span>
+              <div class="menu-sub menu-sub-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item <?= ($nested_dropdown == 'reportMachineryAndEquipment') ? 'show' : '' ?> menu-accordion">
+
+                  <div ng-show="accountProfile.pages_access.me_physical_count.value" class="menu-item">
+                    <a class="menu-link <?= ($page == 'me_physical_count') ? 'active' : '' ?>" href="machinery-furniture-physical-count.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Machinery/Furniture</span>
+                    </a>
+                  </div>
+
+                  <div ng-show="accountProfile.pages_access.lali_physical_count.value" class="menu-item">
+                    <a class="menu-link <?= ($page == 'lali_physical_count') ? 'active' : '' ?>" href="land-and-land-improvement-physical-count.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Land and Land Improvements</span>
+                    </a>
+                  </div>
+
+                  <div ng-show="accountProfile.pages_access.ia_physical_count.value" class="menu-item">
+                    <a class="menu-link <?= ($page == 'ia_physical_count') ? 'active' : '' ?>" href="infrastructure-asset-physical-count.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Infrastructure Assets</span>
+                    </a>
+                  </div>
+
+                  <div ng-show="accountProfile.pages_access.baos_physical_count.value" class="menu-item">
+                    <a class="menu-link <?= ($page == 'baos_physical_count') ? 'active' : '' ?>" href="building-and-other-structure-physical-count.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Building and Other Structure</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div ng-show="accountProfile.pages_access.repair_office.value" class="menu-item">
+              <a class="menu-link <?= ($page == 'repair_office') ? 'active' : '' ?>" href="repair-office.php">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Pre-Repair Inspection</span>
+                <span class="m-menu__link-badge"><span class="badge badge-circle badge-danger">{{ notifications.repair_count.repair_count }}</span></span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <div ng-show="accountProfile.pages_access.reports.value" data-kt-menu-trigger="click" class="menu-item here <?= ($dropdown == 'reports') ? 'show' : '' ?> menu-accordion">
+          <span class="menu-link">
+            <span class="menu-icon">
+              <i class="fonticon-printer fs-2"></i>
+            </span>
+            <span class="menu-title">Reports</span>
+            <span class="menu-arrow"></span>
+          </span>
+          <div class="menu-sub menu-sub-accordion">
+            <div ng-show="accountProfile.pages_access.machinery_equipment_report.value" data-kt-menu-trigger="click" class="menu-item <?= ($nested_dropdown == 'reportMachineryAndEquipment') ? 'show' : '' ?> menu-accordion">
+              <span class="menu-link">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Machinery and Equipment</span>
+                <span class="menu-arrow"></span>
+              </span>
+
+              <div ng-show="accountProfile.pages_access.propertyCard.value" class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'reportPropertyCard') ? 'active' : '' ?>" href="report-PropertyCard.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Property Card</span>
+                  </a>
+                </div>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.reportICS.value" class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'reportICS') ? 'active' : '' ?>" href="report-ICS.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Inventory Custodian Slip (ICS)</span>
+                  </a>
+                </div>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.reportIIRUP.value" class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'reportIIRUP') ? 'active' : '' ?>" href="report-IIRUP.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Inventory and Inspection Report of Unserviceable Property Report (IIRUP)</span>
+                  </a>
+                </div>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.reportSummaryPPEperOffice.value" class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'reportSummaryPPEperOffice') ? 'active' : '' ?>" href="report-summary-ppe-per-office.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Summary of PPE Inventory by Office/Unit</span>
+                  </a>
+                </div>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.reportSummaryPPEperPersonnel.value" class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'reportSummaryPPEperPersonnel') ? 'active' : '' ?>" href="report-summary-ppe-per-personnel.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Summary of PPE Inventory per Personnel</span>
+                  </a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+          <div class="menu-sub menu-sub-accordion">
+            <div ng-show="accountProfile.pages_access.operation_report.value" data-kt-menu-trigger="click" class="menu-item <?= ($operation_dropdown == 'operation') ? 'show' : '' ?> menu-accordion">
+              <span class="menu-link">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Operation</span>
+                <span class="menu-arrow"></span>
+              </span>
+              <!-- <div class="menu-sub menu-sub-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item <?= ($par_dropdown == 'par_dropdown') ? 'show' : '' ?> menu-accordion">
+                  <span class="menu-link">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">PAR</span>
+                    <span class="menu-arrow"></span>
+                  </span>
+
+                  <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <div class="menu-item">
+                      <a class="menu-link <?= ($page == 'report_par') ? 'active' : '' ?>" href="report_par.php">
+                        <span class="menu-bullet">
+                          <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">Property Card</span>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div> -->
+              
+              <div class="menu-sub menu-sub-accordion menu-active-bg" ng-show="accountProfile.pages_access.reportPAR.value">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'reportPropertyAcknowledgementReport') ? 'active' : '' ?>" href="report-PAR.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Property Acknowledgement Report</span>
+                  </a>
+                </div>
+              </div>
+
+              <div ng-show="accountProfile.pages_access.reportPropertyTransferReport.value" class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'reportPropertyTransferReport') ? 'active' : '' ?>" href="report-PTR.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Property Transfer Report</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="menu-sub menu-sub-accordion menu-active-bg" ng-show="accountProfile.pages_access.return_log.value">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'return_log') ? 'active' : '' ?>" href="return-log.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Property Returned Report</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="menu-sub menu-sub-accordion menu-active-bg" ng-show="accountProfile.pages_access.pre_repair_inspection.value">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'pre_repair_inspection') ? 'active' : '' ?>" href="pre-repair-inspection-report.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Pre-Repair Inspection</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="menu-sub menu-sub-accordion menu-active-bg" ng-show="accountProfile.pages_access.physical_inventory_list.value">
+                <div class="menu-item">
+                  <a class="menu-link <?= ($page == 'physical_inventory_list') ? 'active' : '' ?>" href="physical-inventory-list.php">
+                    <span class="menu-bullet">
+                      <span class="bullet bullet-dot"></span>
+                    </span>
+                    <span class="menu-title">Physical Inventory List</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div ng-show="accountProfile.pages_access.physical_count_ppe.value" class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+              <a class="menu-link <?= ($page == 'reportPCEFFOPPE') ? 'active' : '' ?>" href="report-PCEFFOPPE.php">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">Physical Count PPE</span>
+              </a>
+            </div>
+          </div>
+          <div ng-show="accountProfile.pages_access.reportUserPerformance.value" class="menu-sub menu-sub-accordion menu-active-bg">
+            <div class="menu-item">
+              <a class="menu-link <?= ($page == 'reportUserPerformance') ? 'active' : '' ?>" href="report-UserPerformance.php">
+                <span class="menu-bullet">
+                  <span class="bullet bullet-dot"></span>
+                </span>
+                <span class="menu-title">User Performance</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div data-kt-menu-trigger="click" class="menu-item here <?= ($dropdown == 'maintenance') ? 'show' : '' ?> menu-accordion">
+          <span ng-show="accountProfile.pages_access.maintenance.value" class="menu-link">
+            <span class="menu-icon">
+              <i class="fonticon-equalizer fs-2"></i>
+            </span>
+            <span class="menu-title">Setup</span>
+            <span class="menu-arrow"></span>
+          </span>
+          <div class="menu-sub menu-sub-accordion">
+            <div class="menu-item">
+              <div data-kt-menu-trigger="click" class="menu-item <?= ($setup_dropdown == 'setup') ? 'show' : '' ?> menu-accordion">
+                <span class="menu-link" ng-show="accountProfile.pages_access.setup.value">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Library</span>
+                  <span class="menu-arrow"></span>
+                </span>
+                <div class="menu-sub menu-sub-accordion menu-active-bg">
+
+                  <div class="menu-item" ng-show="accountProfile.pages_access.brands.value">
+                    <a class="menu-link <?= ($page == 'brand') ? 'active' : '' ?>" href="brand.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Brand</span>
+                    </a>
+                  </div>
+                  
+                  <div class="menu-item" ng-show="accountProfile.pages_access.articles.value">
+                    <a class="menu-link <?= ($page == 'article') ? 'active' : '' ?>" href="article.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Article</span>
+                    </a>
+                  </div>
+
+                  <div class="menu-item" ng-show="accountProfile.pages_access.suppliers.value">
+                    <a class="menu-link <?= ($page == 'supplier') ? 'active' : '' ?>" href="supplier.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Supplier</span>
+                    </a>
+                  </div>
+
+                  <!-- <div class="menu-item" ng-show="accountProfile.pages_access.employees.value">
+                    <a class="menu-link <?= ($page == 'employee') ? 'active' : '' ?>" href="employee.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Employees</span>
+                    </a>
+                  </div> -->
+
+                  <div class="menu-item" ng-show="accountProfile.pages_access.offices.value">
+                    <a class="menu-link <?= ($page == 'office') ? 'active' : '' ?>" href="office.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Offices</span>
+                    </a>
+                  </div>
+
+                  <div class="menu-item" ng-show="accountProfile.pages_access.signatories.value">
+                    <a class="menu-link <?= ($page == 'signatory') ? 'active' : '' ?>" href="signatories.php">
+                      <span class="menu-bullet">
+                        <span class="bullet bullet-dot"></span>
+                      </span>
+                      <span class="menu-title">Signatories</span>
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+              
+              <div class="menu-item" ng-show="accountProfile.pages_access.users.value">
+                <a class="menu-link <?= ($page == 'user') ? 'active' : '' ?>" href="user.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Users</span>
+                </a>
+              </div>
+
+              <div class="menu-item" ng-show="accountProfile.pages_access.groups.value">
+                <a class="menu-link <?= ($page == 'group') ? 'active' : '' ?>" href="group.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Groups</span>
+                </a>
+              </div>
+
+              <div class="menu-item" ng-show="accountProfile.pages_access.audit_trail.value">
+                <a class="menu-link <?= ($page == 'audit_trail') ? 'active' : '' ?>" href="audit-trail.php">
+                  <span class="menu-bullet">
+                    <span class="bullet bullet-dot"></span>
+                  </span>
+                  <span class="menu-title">Audit Trail</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+version: '3.8'
+  
+services:
+        app:
+                build:
+                        context: .
+                        dockerfile: Dockerfile
+                image: 'ppe/latest'
+                container_name: ppe-new
+                ports:
+                        - "10003:80"
+                volumes:
+                        - .:/var/www/html/
+                networks:
+                        - ppe-network
+
+networks:
+  ppe-network:
+    name: ppe-net

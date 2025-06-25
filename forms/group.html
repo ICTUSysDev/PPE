@@ -1,0 +1,68 @@
+
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="card mb-5 mb-xl-10" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+      <div id="kt_account_settings_profile_details" class="collapse show">
+        <form class="form" autocomplete="off" name="formHolder.group">
+          <div class="card-body">
+            <div class="row mb-6">
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Name<label class="text-danger">*</label></label>
+                <input type="text" name="name" class="form-control form-control-lg" placeholder="Name" ng-disabled="controls.ok.btn" ng-model="group.name" ng-class="{'is-invalid': formHolder.group.name.$touched && formHolder.group.name.$invalid}" required/>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Description<label class="text-danger">*</label></label>
+                <input type="text" name="description" class="form-control form-control-lg" placeholder="Description" ng-disabled="controls.ok.btn" ng-model="group.description" ng-class="{'is-invalid': formHolder.group.description.$touched && formHolder.group.description.$invalid}" required/>
+              </div>
+            </div>
+          </div>
+          <div id="kt_app_content" class="app-content flex-column-fluid">
+            <div id="kt_app_content_container" class="app-container container-fluid">
+              <div class="fv-row">
+                <label class="fs-5 fw-bold form-label mb-2">Role Permissions</label>
+                <div class="table-responsive">
+                  <table class="table align-middle table-row-dashed fs-6 gy-5">
+                    <tbody class="text-gray-600 fw-semibold">
+                      <tr>
+                        <td class="text-gray-800">Administrator Access
+                        <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Allows a full access to the system"></i></td>
+                        <td>
+                          <label class="form-check form-check-custom me-9">
+                            <input class="form-check-input" type="checkbox" value="" id="kt_roles_select_all" />
+                            <span class="form-check-label" for="kt_roles_select_all">Select all</span>
+                          </label>
+                        </td>
+                      </tr>
+                      <tr ng-repeat="p in privileges">
+                        <td class="text-gray-800">{{p.description}}</td>
+                        <td ng-repeat="pp in p.privileges">
+                          <div class="d-flex">
+                            <label class="form-check form-check-sm form-check-custom me-5 me-lg-20">
+                              <input class="form-check-input" type="checkbox" name="value"  checked="pp.value" id="{{p.id}}{{$index}}" ng-model="pp.value" ng-disabled="controls.ok.btn"/>
+                              <span class="form-check-label" for="{{p.id}}{{$index}}">{{pp.description}}</span>
+                            </label>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">{{ controls.cancel.label }}</button>
+      <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)" ng-disabled="controls.ok.btn">
+        <span class="indicator-label">{{ controls.ok.label }}</span>
+        <span class="indicator-progress">Please wait...
+        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+      </button>
+    </div>
+  </div>
+</div>

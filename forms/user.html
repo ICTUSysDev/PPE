@@ -1,0 +1,95 @@
+
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="card mb-5 mb-xl-10" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+      <div id="kt_account_settings_profile_details" class="collapse show">
+        <form class="form" autocomplete="off" name="formHolder.user">
+          <div class="card-body">
+            <div class="row mb-6">
+              <div class="col-lg-8">
+                <div class="row">
+                  <div class="col-lg-6 fv-row">
+                    <label class="form-label">Employee Id<label class="text-danger">*</label>&nbsp<label class="text-danger" ng-show="isError">User Already Exist!</label></label>
+                    <input type="number" name="employee_id" class="form-control form-control-lg mb-3 mb-lg-0" placeholder="Employee Id" ng-model="user.employee_id" ng-change="app.checkEmployeeId(this, user.employee_id)" ng-class="{'is-invalid': formHolder.user.employee_id.$touched && formHolder.user.employee_id.$invalid}" required/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">First Name<label class="text-danger">*</label></label>
+                <input type="text" name="first_name" class="form-control form-control-lg" placeholder="First Name" ng-disabled="controls.ok.btn" ng-model="user.first_name" ng-class="{'is-invalid': formHolder.user.first_name.$touched && formHolder.user.first_name.$invalid}" required/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Last Name<label class="text-danger">*</label></label>
+                <input type="text" name="last_name" class="form-control form-control-lg" placeholder="Last Name" ng-disabled="controls.ok.btn" ng-model="user.last_name" ng-class="{'is-invalid': formHolder.user.last_name.$touched && formHolder.user.last_name.$invalid}" required/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Middle Name<label class="text-danger">*</label></label>
+                <input type="text" name="middle_name" class="form-control form-control-lg" placeholder="Middle Name" ng-disabled="controls.ok.btn" ng-model="user.middle_name" ng-class="{'is-invalid': formHolder.user.middle_name.$touched && formHolder.user.middle_name.$invalid}" required/>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-5 fv-row">
+                <label class="form-label">Office<label class="text-danger">*</label></label>
+                <select name="office_id" aria-label="Select Office" data-control="select2" data-placeholder="Select Office..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="o.name + '(' + (o.shortname) + ')' for o in offices track by o.id" ng-model="user.office_id" ng-class="{'is-invalid': formHolder.user.office_id.$touched && formHolder.user.office_id.$invalid}" required>
+                  <option value="" disabled>Select Office...</option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Position<label class="text-danger">*</label></label>
+                <select name="position_id" aria-label="Select Position" data-control="select2" data-placeholder="Select Position..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="p.position_description for p in positions track by p.id" ng-model="user.position_id" ng-class="{'is-invalid': formHolder.user.position_id.$touched && formHolder.user.position_id.$invalid}" required>
+                  <option value="" disabled>Select Position...</option>
+                </select>
+              </div>
+              <div class="col-lg-3 fv-row">
+                <label class="form-label">Employement Status<label class="text-danger">*</label></label>
+                <select name="employment_status" aria-label="Select Employment Status" data-control="select2" data-placeholder="Select Employment Status..." class="form-select" ng-disabled="controls.ok.btn" ng-model="user.employment_status" ng-class="{'is-invalid': formHolder.user.employment_status.$touched && formHolder.user.employment_status.$invalid}" required>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Email<label class="text-danger">*</label></label>
+                <input type="text" name="email" class="form-control form-control-lg" placeholder="Email" ng-disabled="controls.ok.btn" ng-model="user.email" ng-class="{'is-invalid': formHolder.user.email.$touched && formHolder.user.email.$invalid}" required/>
+              </div>
+              <div class="col-lg-6 fv-row">
+                <label class="form-label">Contact Number<label class="text-danger">*</label></label>
+                <input type="number" name="contact_number" class="form-control form-control-lg" placeholder="Contact Number" ng-disabled="controls.ok.btn" ng-model="user.contact_number" ng-class="{'is-invalid': formHolder.user.contact_number.$touched && formHolder.user.contact_number.$invalid}" required/>
+              </div>
+            </div>
+            <div class="row mb-6">
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Username<label class="text-danger">*</label></label>
+                <input type="text" name="username" class="form-control form-control-lg" placeholder="Username" ng-disabled="controls.ok.btn" ng-model="user.username" ng-class="{'is-invalid': formHolder.user.username.$touched && formHolder.user.username.$invalid}" required/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" ng-disabled="controls.ok.btn" autocomplete="new-password" ng-model="user.password"/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Groups<label class="text-danger">*</label></label>
+                <select name="groups" aria-label="Select Group" data-control="select2" data-placeholder="Select Group..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="g.name for g in groups track by g.id" ng-model="user.groups" ng-class="{'is-invalid': formHolder.user.groups.$touched && formHolder.user.groups.$invalid}" required>
+                  <option value="" disabled>Select Group...</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">{{ controls.cancel.label }}</button>
+            <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)" ng-disabled="controls.ok.btn">
+              <span class="indicator-label">{{ controls.ok.label }}</span>
+              <span class="indicator-progress">Please wait...
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

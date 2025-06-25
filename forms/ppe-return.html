@@ -1,0 +1,177 @@
+
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+      <div class="card card-flush mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+        <form class="form" autocomplete="off" name="formHolder.machineryEquipmentReturn">
+          <div class="card-body">
+            <div class="row input-primary">
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Purpose<label class="text-danger">*</label></label>
+                <select name="purpose" aria-label="Purpose" data-control="select2" data-placeholder="Purpose..." class="default-select form-control wide" ng-change="app.checkPurposeReturn(this)" ng-model="machineryEquipmentReturn.purpose" ng-class="{'is-invalid': formHolder.machineryEquipmentReturn.purpose.$touched && formHolder.machineryEquipmentReturn.purpose.$invalid}" required>
+                  <option value="DISPOSAL">Disposal</option>
+                  <!-- <option value="REPAIR">Repair</option> -->
+                  <option value="RETURN TO STOCK">Return to Stock</option>
+                  <option value="OTHER">Other</option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Return Item to</label>
+                <select name="new_accountable_officer" aria-label="Accountable Officer" data-control="select2" data-placeholder="Return Item to..." class="select2-width-75 form-select" ng-options="ao.name for ao in accountableOfficer track by ao.id" ng-model="machineryEquipmentReturn.new_accountable_officer" ng-disabled="disabledReturnedToGSO">
+                  <option value="" disabled>Select New Accountable Officer...</option>
+                </select>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">PAR/ICS No.</label>
+                <input type="text" name="par_no" class="form-control form-control-lg" placeholder="PAR No." ng-disabled="true" ng-model="machineryEquipmentReturn.par_no"/>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-12 fv-row">
+                  <label class="form-label">Note<label class="text-danger">*</label></label>
+                  <textarea name="note" placeholder="Note..." class="form-control form-control-lg" ng-model="machineryEquipmentReturn.note" ng-class="{'is-invalid': formHolder.machineryEquipmentReturn.note.$touched && formHolder.machineryEquipmentReturn.note.$invalid}" required></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-body pt-0 pb-5">
+        <div class="d-flex flex-column flex-lg-row">
+          <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-450px mb-5">
+            <div class="card mb-5 mb-xl-8" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+              <div class="card-header border-0 pt-6">
+                <div class="card-title">
+                  <div class="d-flex align-items-center position-relative my-1">
+                    <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                        <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Machine/Equipment" ng-model="searchMachineryEquipmentData"/>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                  <thead>
+                    <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                      <th><strong>#</strong></th>
+                      <th><strong>Details</strong></th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-600 fw-semibold">
+                    <tr ng-repeat="med in filterData2 = (machineryEquipment | filter:searchMachineryEquipmentData) | paginationAdd: currentPageAdd:pageSizeAdd">
+                      <td>{{med.list_no}}</td>
+                        <td class="d-flex align-items-center">
+                          <div class="d-flex flex-column">
+                            <a class="text-gray-800 text-hover-primary mb-1">{{ med.property_number }}</a>
+                            <span>{{ med.article.name }}</span>
+                          </div>
+                        </td>
+                      <td>
+                        <button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto me-5" ng-click="app.addFunction(this, med)">
+                          <span class="svg-icon svg-icon-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+                              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                              <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                          </span>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer">
+                <tfoot>
+                  <tr>
+                    <td colspan="6" style="text-align: center;">
+                      <div class="pull-right"><ul uib-pagination direction-links="false" boundary-links="true" total-items="filterData2.length" ng-model="currentPageAdd" max-size="maxSizeAdd"></ul></div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </div>
+            </div>
+          </div>
+          <div class="flex-lg-row-fluid ms-lg-15">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+                  <div class="card card-flush mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+                    <div class="card-header border-0 pt-6">
+                      <div class="card-title">
+                        <div class="d-flex align-items-center position-relative my-1">
+                          <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+                              <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+                            </svg>
+                          </span>
+                          <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Machine/Equipment" ng-model="searchMachineryEquipment"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                        <thead>
+                          <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                            <th><strong>#</strong></th>
+                            <th><strong>Details</strong></th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-gray-600 fw-semibold">
+                          <tr ng-repeat="medt in filterData3 = (machineryEquipmentData | filter:searchMachineryEquipment) | paginationRemove: currentPageRemove:pageSizeRemove">
+                            <td>{{medt.list_no}}</td>
+                            <td class="d-flex align-items-center">
+                              <div class="fw-semibold ms-5">
+                                <a href="#" class="fs-5 fw-bold text-dark text-hover-primary">{{ medt.property_number }}</a>
+                                <div class="fs-7 text-muted">
+                                <a href="#">{{ medt.article.name }}</a></div>
+                              </div>
+                            </td>
+                            <td>
+                              <button type="button" class="btn btn-icon btn-active-light-danger w-30px h-30px ms-auto me-5" ng-click="app.removeFunction(this, medt)">
+                                <span class="svg-icon svg-icon-3">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-dash" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M5.5 6.5A.5.5 0 0 1 6 6h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5z"/>
+                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                  </svg>
+                                </span>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="card-footer">
+                      <tfoot>
+                        <tr>
+                          <td colspan="6" style="text-align: center;">
+                            <div class="pull-right"><ul uib-pagination direction-links="false" boundary-links="true" total-items="filterData3.length" ng-model="currentPageRemove" max-size="maxSizeRemove"></ul></div>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer d-flex justify-content-end py-6 px-9">
+                  <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)">{{ controls.cancel.label }}</button>
+                  <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.saveReturn(this)" ng-disabled="reparDisableSave">
+                    <span class="indicator-label">Return</span>
+                    <span class="indicator-progress">Please wait...
+                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="card mb-5 mb-xl-10" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+      <div id="kt_account_settings_profile_details" class="collapse show">
+        <form class="form" autocomplete="off" name="formHolder.office">
+          <div class="card-body">
+            <div class="row mb-6">
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Office Name<label class="text-danger">*</label></label>
+                <input type="text" name="name" class="form-control form-control-lg" placeholder="Office Name" ng-disabled="controls.ok.btn" ng-model="office.name" ng-class="{'is-invalid': formHolder.office.name.$touched && formHolder.office.name.$invalid}" required/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Short Name<label class="text-danger">*</label></label>
+                <input type="text" name="shortname" class="form-control form-control-lg" placeholder="Short Name" ng-disabled="controls.ok.btn" ng-model="office.shortname" ng-class="{'is-invalid': formHolder.office.shortname.$touched && formHolder.office.shortname.$invalid}" required/>
+              </div>
+              <div class="col-lg-4 fv-row">
+                <label class="form-label">Head of Office<label class="text-danger">*</label></label>
+                <select name="head_of_office" aria-label="Head of Office" data-control="select2" data-placeholder="Head of Office..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="hoo.name + ' (' + (hoo.employee_id) + ')' for hoo in headOfOffice track by hoo.id" ng-model="office.head_of_office" ng-class="{'is-invalid': formHolder.office.head_of_office.$touched && formHolder.office.head_of_office.$invalid}" required>
+                  <option value="" disabled>Select Head of Office...</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">{{ controls.cancel.label }}</button>
+            <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)" ng-disabled="controls.ok.btn">
+              <span class="indicator-label">{{ controls.ok.label }}</span>
+              <span class="indicator-progress">Please wait...
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

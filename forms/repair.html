@@ -1,0 +1,149 @@
+<script src="assets/js/select2.full.min.js"></script>
+<script src="assets/js/select2-init.js"></script>
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
+      <li class="nav-item">
+        <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_user_view_overview_tab">Machine/Equipment Details</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-active-primary pb-4" data-kt-countup-tabs="true" data-bs-toggle="tab" href="#kt_user_view_overview_security">Repair Form</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+        <div class="card card-flush mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+          <form class="form" autocomplete="off" name="formHolder.machineryEquipmentDetails">
+            <div class="card-body">
+              <div class="row mb-12">
+                <div class="col-lg-12 fv-row">
+                  <label class="form-label">Accountable Officer<label class="text-danger">*</label></label>
+                  <select name="accountable_officer" aria-label="Accountable Officer" data-control="select2" data-placeholder="Accountable Officer..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="ao.name for ao in accountableOfficer track by ao.id" ng-model="repair.accountable_officer" ng-class="{'is-invalid': formHolder.repair.accountable_officer.$touched && formHolder.repair.accountable_officer.$invalid}" required>
+                    <option value="" disabled>Select Accountable Officer...</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-6">
+                <div class="col-lg-4 fv-row">
+                  <label class="form-label">Property Number<label class="text-danger">*</label></label>
+                  <select name="machinery_equipment" aria-label="Accountable Officer" data-control="select2" data-placeholder="Accountable Officer..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="p.property_number for p in machineryEquipment track by p.id" ng-model="repair.machinery_equipment" ng-class="{'is-invalid': formHolder.repair.machinery_equipment.$touched && formHolder.repair.machinery_equipment.$invalid}" required>
+                    <option value="" disabled>Select Accountable Officer...</option>
+                  </select>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="form-label">Office<label class="text-danger">*</label></label>
+                  <select name="office_id" aria-label="Select Office" data-control="select2" data-placeholder="Select Office..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="o.name + ' (' + (o.shortname) + ')' for o in offices track by o.id" ng-model="repair.office_id" ng-class="{'is-invalid': formHolder.repair.office_id.$touched && formHolder.repair.office_id.$invalid}" required>
+                    <option value="" disabled>Select Office...</option>
+                  </select>
+                </div>
+                <div class="col-lg-4 fv-row">
+                  <label class="form-label">Par Number<label class="text-danger">*</label></label>
+                  <select name="par_id" aria-label="Select Office" data-control="select2" data-placeholder="Select Office..." class="select2-width-75 form-select" ng-disabled="controls.ok.btn" ng-options="mep.par_no for mep in machineryEquipmentPars track by mep.id" ng-model="repair.par_id" ng-class="{'is-invalid': formHolder.repair.par_id.$touched && formHolder.repair.par_id.$invalid}" required>
+                    <option value="" disabled>Select Office...</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+          <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">{{ controls.cancel.label }}</button>
+          <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)" ng-disabled="controls.ok.btn">
+            <span class="indicator-label">{{ controls.ok.label }}</span>
+            <span class="indicator-progress">Please wait...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+          </button>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="kt_user_view_overview_security" role="tabpanel">
+        <div class="card pt-4 mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+          <div class="card-header border-0">
+            <div class="card-title">
+              <h2>Repair Form</h2>
+            </div>
+          </div>
+          <form class="form" name="formHolder.repairForm">
+            <div class="card-body pt-0 pb-5">
+              <div class="d-flex flex-column flex-lg-row">
+                <div class="flex-column flex-lg-row-auto w-lg-250px w-xl-350px mb-10">
+                  <div class="card mb-5 mb-xl-8" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+                    <div class="card-body">
+                      <div class="col-lg-12 fv-row">
+                        <label class="form-label">Particulars<label class="text-danger">*</label></label>
+                        <textarea name="particulars" placeholder="Particulars" class="form-control form-control-lg" ng-model="repairForm.particulars" ng-class="{'is-invalid': formHolder.repairForm.particulars.$touched && formHolder.repairForm.particulars.$invalid}" required></textarea>
+                      </div>
+                      <br>
+                      <div class="col-lg-12 fv-row">
+                        <label class="form-label">Date<label class="text-danger">*</label></label>
+                        <input type="date" name="repair_date" class="form-control form-control-lg" placeholder="Date" ng-model="repairForm.repair_date" ng-class="{'is-invalid': formHolder.repairForm.repair_date.$touched && formHolder.repairForm.repair_date.$invalid}" required/>
+                      </div>
+                      <br>
+                      <div class="col-lg-12 fv-row">
+                        <label class="form-label">Amount<label class="text-danger">*</label></label>
+                        <input type="number" name="amount" class="form-control form-control-lg" placeholder="Amount" ng-model="repairForm.amount" ng-class="{'is-invalid': formHolder.repairForm.amount.$touched && formHolder.repairForm.amount.$invalid}" required/>
+                      </div>
+                      <div class="card-footer d-flex justify-content-end py-6 px-9">
+                        <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)">{{ controls.cancel.label }}</button>
+                        <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.saveRepairForm(this)">
+                          <span class="indicator-label">Save</span>
+                          <span class="indicator-progress">Please wait...
+                          <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex-lg-row-fluid ms-lg-15">
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+                      <div class="card card-flush mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+                        <div class="card-body pb-5">
+                          <div class="d-flex flex-stack">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                              <thead>
+                                <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                                  <th><strong>#</strong></th>
+                                  <th><strong>Particulars</strong></th>
+                                  <th><strong>Date</strong></th>
+                                  <th>Amount</th>
+                                </tr>
+                              </thead>
+                              <tbody class="text-gray-600 fw-semibold">
+                                <tr ng-repeat="rf in filterData = (repairList | pagination: currentPage:pageSize)">
+                                  <td>{{ rf.list_no }}</td>
+                                  <td class="d-flex align-items-center">
+                                    <div class="d-flex flex-column">
+                                      <a class="text-gray-800 text-hover-primary mb-1">{{ rf.particulars }}</a>
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="badge badge-light fw-bold">{{ rf.repair_date }}</div>
+                                  </td>
+                                  <td>
+                                    <div class="badge badge-light fw-bold">{{ rf.amount }}</div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td colspan="6" style="text-align: center;">
+                                    <div class="pull-right"><ul uib-pagination direction-links="false" boundary-links="true" total-items="filterData.length" ng-model="currentPage" max-size="maxSize"></ul></div>
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

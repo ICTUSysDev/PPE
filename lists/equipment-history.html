@@ -1,0 +1,49 @@
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="card">
+      <div class="card-body pt-5">
+        <div class="timeline">
+          <div class="timeline-item" ng-repeat="eh in equipmentHistories">
+            <div class="timeline-line w-40px"></div>
+            <div class="timeline-icon symbol symbol-circle symbol-40px me-4">
+              <div class="symbol-label bg-light">
+                <span class="svg-icon svg-icon-2 svg-icon-gray-500">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.3" d="M2 4V16C2 16.6 2.4 17 3 17H13L16.6 20.6C17.1 21.1 18 20.8 18 20V17H21C21.6 17 22 16.6 22 16V4C22 3.4 21.6 3 21 3H3C2.4 3 2 3.4 2 4Z" fill="currentColor" />
+                    <path d="M18 9H6C5.4 9 5 8.6 5 8C5 7.4 5.4 7 6 7H18C18.6 7 19 7.4 19 8C19 8.6 18.6 9 18 9ZM16 12C16 11.4 15.6 11 15 11H6C5.4 11 5 11.4 5 12C5 12.6 5.4 13 6 13H15C15.6 13 16 12.6 16 12Z" fill="currentColor" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="timeline-content mb-10 mt-1">
+              <div class="pe-3 mb-5">
+                <div class="fs-5 fw-semibold mb-2">Operation: 
+                  <a href="#" class="text-{{ eh.color_code }}">{{ eh.operation }}</a>
+                </div>
+                <div class="d-flex align-items-center mt-1 fs-6">
+                  <div class="text-muted me-2 fs-12">{{ eh.history_date }} </div>
+                  <div class="symbol symbol-circle symbol-25px" data-bs-toggle="tooltip" data-bs-boundary="window" data-bs-placement="top" title="Nina Nilson">
+                    <img src="assets/images/profiles/300-2.jpg" alt="img" />
+                  </div>
+                </div>
+              </div>
+              <div class="overflow-auto pb-5">
+                <div class="d-flex align-items-center border border-dashed border-gray-300 rounded min-w-750px px-7 py-3 mb-5">
+                  <a  class="text-muted me-2 fs-7">{{ eh.operation_description }}</a>
+                  <a  class="text-primary" ng-show="{{ eh.show_highlight }}">{{ eh.accountable_officer.name }}</a>
+                </div>
+                <div class="d-flex align-items-center border border-dashed border-gray-300 rounded min-w-750px px-7 py-3 mb-0" ng-show="{{ eh.show_highlight }}">
+                  <a  class="text-muted me-2 fs-7">OFFICE OF:</a>
+                  <a  class="text-primary">{{ eh.office_id.name }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      <button type="reset" class="btn btn-danger btn-active-light-danger me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">Close</button>
+    </div>
+  </div>
+</div>

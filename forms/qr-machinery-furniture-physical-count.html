@@ -1,0 +1,76 @@
+
+<div id="kt_app_content" class="app-content flex-column-fluid">
+    <div id="kt_app_content_container" class="app-container container-fluid">
+      <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-8">
+        <li class="nav-item">
+          <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_user_view_overview_tab">Property Details</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="kt_user_view_overview_tab" role="tabpanel">
+          <div class="card card-flush mb-6 mb-xl-9" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px;">
+            <form class="form" autocomplete="off" name="formHolder.PPEphysicalCount">
+              <div class="card-body">
+                <div class="row mb-6">
+                  <div class="row">
+                    <div class="col-lg-7 fv-row">
+                      <label class="form-label">Property #</label>
+                      <input type="text" name="property_number" class="form-control form-control-lg" placeholder="Property #" ng-disabled="controls.ok.btn" ng-model="PPEphysicalCount.property_number" ng-class="{'is-invalid': formHolder.PPEphysicalCount.property_number.$touched && formHolder.PPEphysicalCount.property_number.$invalid}" required/>
+                    </div>
+                    <div class="col-lg-5 fv-row">
+                      <label class="form-label">Article</label>
+                      <input type="text" name="article_name" class="form-control form-control-lg" placeholder="Article" ng-disabled="controls.ok.btn" ng-model="PPEphysicalCount.article_name"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-6">
+                  <div class="row">
+                      <div class="col-lg-9 fv-row">
+                        <label class="form-label">Description</label>
+                        <input type="text" name="description" class="form-control form-control-lg" placeholder="Description" ng-disabled="controls.ok.btn" ng-model="PPEphysicalCount.description" ng-class="{'is-invalid': formHolder.PPEphysicalCount.description.$touched && formHolder.PPEphysicalCount.description.$invalid}" required/>
+                      </div>
+                      <div class="col-lg-3 fv-row">
+                        <label class="form-label">Acquisition Cost</label>
+                        <input type="text" name="acquisition_cost" class="form-control form-control-lg" placeholder="Acquisition Cost" ng-disabled="controls.ok.btn" ng-model="PPEphysicalCount.acquisition_cost" ng-class="{'is-invalid': formHolder.PPEphysicalCount.acquisition_cost.$touched && formHolder.PPEphysicalCount.acquisition_cost.$invalid}" required/>
+                      </div>
+                    </div>
+                </div>
+                <div class="row mb-6">
+                  <div class="col-lg-5 fv-row">
+                    <label class="form-label">Inventory Date<label class="text-danger">*</label></label>
+                    <input type="date" name="inventory_date" class="form-control form-control-lg" placeholder="Inventory Date"  ng-model="PPEphysicalCount.inventory_date" ng-class="{'is-invalid': formHolder.PPEphysicalCount.inventory_date.$touched && formHolder.PPEphysicalCount.inventory_date.$invalid}" required/>
+                  </div>
+                  <div class="col-lg-7 fv-row">
+                    <label class="form-label">Location<label class="text-danger">*</label></label>
+                    <input type="text" name="location" class="form-control form-control-lg" placeholder="Location"  ng-model="PPEphysicalCount.location" ng-class="{'is-invalid': formHolder.PPEphysicalCount.location.$touched && formHolder.PPEphysicalCount.location.$invalid}" required/>
+                  </div>
+                 
+                </div>
+                
+                <div class="row mb-6">
+                  
+                  <div class="col-lg-4 fv-row">
+                    <label class="form-label">Condition<label class="text-danger">*</label></label>
+                    <input type="text" name="equipment_condition" class="form-control form-control-lg" placeholder="Condition"  ng-model="PPEphysicalCount.equipment_condition" ng-class="{'is-invalid': formHolder.PPEphysicalCount.equipment_condition.$touched && formHolder.PPEphysicalCount.equipment_condition.$invalid}" required/>
+                  </div>
+                  <div class="col-lg-8 fv-row">
+                    <label class="form-label">Remarks<label class="text-danger">*</label></label>
+                    <input type="text" name="remarks" class="form-control form-control-lg" placeholder="Remarks"  ng-model="PPEphysicalCount.remarks" ng-class="{'is-invalid': formHolder.PPEphysicalCount.remarks.$touched && formHolder.PPEphysicalCount.remarks.$invalid}" required/>
+                  </div>
+                </div>
+  
+              </div>
+            </form>
+          </div>
+          <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <button type="reset" class="btn btn-light btn-active-light-primary me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">{{ controls.cancel.label }}</button>
+            <button type="submit" class="btn btn-primary" id="spinner_form_submit" ng-click="app.save(this)">
+              <span class="indicator-label">{{ controls.ok.label }}</span>
+              <span class="indicator-progress">Please wait...
+              <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,12 @@
+.form-select {
+  border: 1px solid rgba(0, 255, 0, 0.5);
+}
+.form-control {
+  border: 1px solid rgba(0, 255, 0, 0.5);
+}
+.form-check-input {
+  border: 1px solid rgba(0, 255, 0, 0.5);
+}
+textarea .form-control{
+  border: 1px solid rgba(0, 255, 0, 0.3);
+}

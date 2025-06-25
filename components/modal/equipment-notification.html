@@ -1,0 +1,93 @@
+<div class="card-body p-9">
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Office</label>
+    <div class="col-lg-8">
+      <span class="fw-bold fs-6 text-gray-800">{{ viewNotification.machinery_equipment.office_id.name }}</span>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">COA Description</label>
+    <div class="col-lg-8 fv-row">
+      <span class="fw-semibold text-gray-800 fs-6">{{ viewNotification.machinery_equipment.coa_description_id.account_title }}</span>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Property Number</label>
+    <div class="col-lg-8 fv-row">
+      <span class="fw-semibold text-gray-800 fs-6">{{ viewNotification.machinery_equipment.property_number }}</span>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Article</label>
+    <div class="col-lg-8 fv-row">
+      <span class="fw-semibold text-gray-800 fs-6">{{ viewNotification.machinery_equipment.article_id.name }}</span>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Brand</label>
+    <div class="col-lg-8 fv-row">
+      <span class="fw-semibold text-gray-800 fs-6">{{ viewNotification.machinery_equipment.brand_id.name }}</span>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Description</label>
+    <div class="col-lg-8">
+      <a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ viewNotification.machinery_equipment.description }}</a>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Mode of Acquisition</label>
+    <div class="col-lg-8">
+      <a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ viewNotification.machinery_equipment.mode_of_acquisition }}</a>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Acquisition Date</label>
+    <div class="col-lg-8">
+      <a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ viewNotification.machinery_equipment.acquisition_date }}</a>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Acquisition Cost</label>
+    <div class="col-lg-8">
+      <a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ viewNotification.machinery_equipment.acquisition_cost }}</a>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Fund</label>
+    <div class="col-lg-8">
+      <a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ viewNotification.machinery_equipment.fund_id.name }}</a>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Supplier</label>
+    <div class="col-lg-8">
+      <a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ viewNotification.machinery_equipment.supplier_id.name }}</a>
+    </div>
+  </div>
+  <div class="row mb-7">
+    <label class="col-lg-4 fw-semibold text-muted">Remarks</label>
+    <div class="col-lg-8">
+      <a href="#" class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ viewNotification.machinery_equipment.remarks }}</a>
+    </div>
+  </div>
+  <div class="notice d-flex bg-light-info rounded border-info border border-dashed p-6">
+    <span class="svg-icon svg-icon-2tx svg-icon-info me-4">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
+        <rect x="11" y="14" width="7" height="2" rx="1" transform="rotate(-90 11 14)" fill="currentColor" />
+        <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor" />
+      </svg>
+    </span>
+    <div class="d-flex flex-stack flex-grow-1">
+      <div class="fw-semibold">
+        <h4 class="text-gray-900 fw-bold">Serial/Part Number</h4>
+        <br>
+        <p ng-repeat="sn in viewNotification.machinery_equipment.parts_serial_number">
+          <a class="fs-6 text-gray-700">{{ sn.part }}:</a>
+          <a class="fw-bold">{{ sn.serial_number }}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div id="kt_app_content" class="app-content flex-column-fluid">
+  <div id="kt_app_content_container" class="app-container container-fluid">
+    <div class="row g-6 g-xl-9">
+      <div ng-repeat="rh in repairHistories" class="col-md-6 col-xl-4">
+        <a ng-click="app.viewRepairHistory(this, rh)" class="card border-hover-primary" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px; cursor: pointer;">
+          <div class="card-header border-0 pt-0">
+            <div class="card-toolbar">
+              <span class="badge badge-light-primary fw-bold me-auto px-4 py-3">{{ rh.remarks }}</span>
+            </div>
+          </div>
+          <div class="card-body p-9">
+            <div class="fs-6 fw-bold text-dark">{{ rh.machinery_equipment.property_number }}</div>
+            <p class="text-gray-400 fw-semibold fs-7 mt-1 mb-7">{{ rh.particulars }}</p>
+            <div class="d-flex flex-wrap mb-5">
+              <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-7 mb-3">
+                <div class="fs-6 text-gray-800 fw-bold">{{ rh.date_release }}</div>
+                <div class="fw-semibold text-gray-400">Date Repaired</div>
+              </div>
+              <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
+                <div class="fs-6 text-gray-800 fw-bold">₱ {{ rh.waste_materials.total_amount }}.00</div>
+                <div class="fw-semibold text-gray-400">Amount</div>
+              </div>
+            </div>
+            <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 mb-3">
+              <div class="h-4px w-100 bg-light mb-5" data-bs-toggle="tooltip">
+                <div class="bg-{{ rh.property_life_color }} rounded h-6px w-{{ rh.property_life }}" role="progressbar" aria-valuenow="{{ rh.property_life }}" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="fw-semibold text-gray-400 pt-2">Property Life: {{ rh.property_life_remaining }} Year/s Left</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end py-6 px-9">
+      <button type="reset" class="btn btn-danger btn-active-light-danger me-2" ng-click="app.list(this)" ng-disabled="controls.cancel.btn">Close</button>
+    </div>
+  </div>
+</div>

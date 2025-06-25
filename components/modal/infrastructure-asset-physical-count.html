@@ -1,0 +1,72 @@
+
+<div class="container">
+  <h1 class="d-flex justify-content-center align-items-center mb-7">Physical Inventory</h1>
+  <div class="row">
+    <div class="d-flex flex-stack pb-3">
+      <div class="row mb-6">
+        <div class="row">
+          <div class="col-lg-3 fv-row">
+            <p class="text-muted fs-12">ID Number</p>
+          </div>
+          <div class="col-lg-9 fv-row">
+            <p class="text-gray-700 fw-semibold fs-12 mb-12">{{ viewHistory.infrastructure_id_number }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 fv-row">
+            <p class="text-muted fs-12">Details</p>
+          </div>
+          <div class="col-lg-9 fv-row">
+            <p class="text-gray-700 fw-semibold fs-12 mb-12">{{viewHistory.infrastructure_condition}} | {{viewHistory.remarks}}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3 fv-row">
+            <p class="text-muted fs-12">Description</p>
+          </div>
+          <div class="col-lg-9 fv-row">
+            <p class="text-gray-700 fw-semibold fs-12 mb-12">{{viewHistory.infrastructure_component}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-12">
+      <!-- <div class="col-4"> -->
+        <div class="card border-hover-primary bg-gray-100 bg-opacity-70 rounded-2 px-6 py-5" style="box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2); padding: 10px; cursor: pointer;">
+          <table class="table align-middle table-row-dashed fs-6 gy-3" id="kt_table_widget_4_table">
+            <thead>
+              <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                <th class="min-w-50px">#</th>
+                <th class="text-center min-w-100px">Inventory Date</th>
+                <th class="text-center min-w-100px">Location</th>
+                <th class="text-center min-w-100px">Condition</th>
+                <th class="text-center min-w-100px">Remarks</th>
+                <th class="text-center min-w-125px">Inventory by:</th>
+              </tr>
+            </thead>
+            <tbody class="fw-bold text-gray-800 text-center">
+              <tr ng-repeat="pcl in viewHistory.physical_count_list">
+                <td>{{$index+1}}</td>
+                <td>{{ pcl.inventory_date }}</td>
+                <td>{{ pcl.location }}</td>
+                <td>{{ pcl.equipment_condition }}</td>
+                <td>{{ pcl.remarks }}</td>
+                <td>{{ pcl.inventory_by.name }}</td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      <!-- </div> -->
+    </div>
+    <span class="text-muted fs-8">*Last five Physical Inventory performed. Sorted from latest inventory.</span>
+  </div>
+</div>
+  
+<style>
+  table, th, td {
+    border: 1px solid #6D6D80 !important;
+    text-align: center !important;
+  }
+</style>

@@ -1,0 +1,157 @@
+
+<div class="row">
+  <div class="col-xl-12">
+      <div class="row">
+        <div class="col-lg-12">
+          <table class="table-color-{{dataThemeMode}}" style="width:100%;">
+            <tr>
+              <th class="table-color-{{dataThemeMode}}" colspan="9">
+                <div class="col-lg-12" style="margin-top: 1px;">
+                  <p class="text-end" style="font-family:'Trebuchet MS'; font-size: 9pt; line-height: 2ex;">Appendix 54</p>
+                </div>
+                <div class="col-lg-12" style="margin-top: 1px;">
+                  <p class="text-center" style="font-family:'Trebuchet MS'; font-size: 10pt; line-height: 1ex;"><strong>PROPERTY CARD</strong></p>
+                </div>
+                <div class="col-lg-12" style="margin-top: 1px;">
+                  <p class="text-start" style="font-family:'Trebuchet MS'; font-size: 10pt; line-height: 1ex;">LGU: PROVINCIAL GOVERNMENT OF LA UNION</p>
+                  <p class="text-end" style="font-family:'Trebuchet MS'; font-size: 10pt; line-height: 1ex;">Fund: <u>{{ viewRepairHistory.repair_history.fund_id.name }}</u></p>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th class="table-color-{{dataThemeMode}}" colspan="9">
+                <div class="col-lg-12" style="margin-top: 5px;">
+                  <p class="text-start" style="font-family:'Trebuchet MS'; font-size: 10pt; line-height: 1ex;"><strong>Property, Plant and Equipment</strong>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    {{ viewRepairHistory.machinery_equipment.property_number }}</p>
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th class="table-color-{{dataThemeMode}}" colspan="9" rowspan="8">
+                <div class="row" style="margin-top: 5px;">
+                  <div class="col-lg-4">
+                    <p class="text-start" style="font-family:'Trebuchet MS'; font-size: 10pt; line-height: 2ex;"><strong>Description:</strong></p>
+                  </div>
+                </div>
+                <div class="row" style="margin-top: 0px;">
+                  <div class="col-lg-8">
+                    <p class="text-start" style="font-family:'Trebuchet MS'; font-size: 10pt; line-height: 0ex;">{{ viewRepairHistory.machinery_equipment.description }}</p>
+                  </div>
+                </div>
+              </th>
+            </tr>
+          </table>
+          <table class="table-color-{{dataThemeMode}}" style="width:100%;">
+            <thead>
+              <tr style="background-color: rgb(206, 206, 206);">
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="2" style="width:12%"><small>Date</small></th>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="2" style="width:12%"><small>Reference/ PAR No.</small></th>
+                <td class="table-color-{{dataThemeMode}} text-center" style="width:12%"><small><strong>Receipt</strong></small></td>
+                <td class="table-color-{{dataThemeMode}} text-center" colspan="2" style="width:12%"><small><strong>Issue/Transfer/Disposal</strong></small></td>
+                <td class="table-color-{{dataThemeMode}} text-center" style="width:12%"><small><strong>Balance</strong></small></td>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="2" style="width:12%"><small>Amount</small></th>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="2" style="width:12%"><small>Remarks</small></th>
+              </tr>
+              <tr style="background-color: rgb(206, 206, 206);">
+                <td class="table-color-{{dataThemeMode}} text-center" style="width:12%"><small><strong>Qty.</strong></small></td>
+                <td class="table-color-{{dataThemeMode}} text-center" style="width:12%"><small><strong>Qty.</strong></small></td>
+                <td class="table-color-{{dataThemeMode}} text-center" style="width:12%"><small><strong>Office/Officer</strong></small></td>
+                <td class="table-color-{{dataThemeMode}} text-center" style="width:12%"><small><strong>Qty.</strong></small></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="table-color-{{dataThemeMode}} bg-{{ vp.bg_color }} text-center">{{ viewRepairHistory.machinery_equipment.acquisition_date }}</td>
+                <td class="table-color-{{dataThemeMode}} bg-{{ vp.bg_color }} text-center">{{ viewRepairHistory.repair_history.par_id.par_no }}</td>
+                <td class="table-color-{{dataThemeMode}} bg-{{ vp.bg_color }} text-center">1</td>
+                <td class="table-color-{{dataThemeMode}} bg-{{ vp.bg_color }} text-center">1</td>
+                <td class="table-color-{{dataThemeMode}} bg-{{ vp.bg_color }} text-center">{{ viewRepairHistory.repair_history.office_id.shortname }}</td>
+                <td class="table-color-{{dataThemeMode}} bg-{{ vp.bg_color }} text-center">0</td>
+                <td class="table-color-{{dataThemeMode}} bg-{{ vp.bg_color }} text-center">{{ viewRepairHistory.machinery_equipment.acquisition_cost }}</td>
+                <td class="table-color-{{dataThemeMode}} bg-{{ vp.bg_color }} text-center">PAR: {{ viewRepairHistory.repair_history.accountable_officer.employee }}</td>
+              </tr>
+              <tr>
+                <td class="table-color-{{dataThemeMode}}">&nbsp</td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+              </tr>
+              <tr>
+                <td class="table-color-{{dataThemeMode}}">&nbsp</td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+              </tr>
+              <tr>
+                <td class="table-color-{{dataThemeMode}}">&nbsp</td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+                <td class="table-color-{{dataThemeMode}}"></td>
+              </tr>
+              <tr style="background-color: rgb(206, 206, 206);">
+                <th class="table-color-{{dataThemeMode}} text-center" colspan="2">Date</th>
+                <th class="table-color-{{dataThemeMode}} text-center" colspan="4">Particulars</th>
+                <th class="table-color-{{dataThemeMode}} text-center" colspan="1">Amount</th>
+                <th class="table-color-{{dataThemeMode}} text-center" colspan="1">Remarks</th>
+              </tr>
+              <tr>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="3" colspan="2" style="width:12%"><small>{{ viewRepairHistory.repair_history.repair_date }}</small></th>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="3" colspan="4" style="width:12%"><small>{{ viewRepairHistory.repair_history.particulars }}</small></th>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="3" colspan="1" style="width:12%"><small>{{ viewRepairHistory.repair_history.amount }}</small></th>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="3" colspan="1" style="width:12%"><small>{{ viewRepairHistory.repair_history.remarks }}</small></th>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="1" colspan="2" style="width:12%"><small>&nbsp</small></th>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="1" colspan="4" style="width:12%"><small>&nbsp</small></th>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="1" colspan="1" style="width:12%"><small>&nbsp</small></th>
+                <th class="table-color-{{dataThemeMode}} text-center" rowspan="1" colspan="1" style="width:12%"><small>&nbsp</small></th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <style>
+        .table-color-dark {
+          border: 1px solid white;
+          border-collapse: collapse;
+        }
+        .table-color-light {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        .th-color-dark {
+          border: 1px solid white;
+          border-collapse: collapse;
+        }
+        .th-color-light {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        .td-color-dark {
+          border: 1px solid white;
+          border-collapse: collapse;
+        }
+        .td-color-light {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+      </style>
+    </div>
+  </div>
+</div>
