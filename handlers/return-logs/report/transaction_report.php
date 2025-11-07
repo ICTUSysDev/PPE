@@ -27,7 +27,8 @@ foreach($return_logs as $key => $rl) {
       $office_head = $con->getData("SELECT id, name, head_of_office FROM offices WHERE id = ".$accountable_officers[0]['office_id']);
       $return_logs[0]['office'] = $office_head[0];
 
-      $office_head_name = $con->getData("SELECT id, CONCAT(last_name,', ',first_name,' ',middle_name) AS office_head_name, position_id FROM users WHERE id = ".$office_head[0]['head_of_office']);
+      // $office_head_name = $con->getData("SELECT id, CONCAT(last_name,', ',first_name,' ',middle_name) AS office_head_name, position_id FROM users WHERE id = ".$office_head[0]['head_of_office']);
+      $office_head_name = $con->getData("SELECT id, CONCAT(first_name,' ',left(middle_name,1), ' ',last_name) AS office_head_name, position_id FROM users WHERE id = ".$office_head[0]['head_of_office']);
       $return_logs[0]['office']['office_head_name'] = $office_head_name[0];
 
       $position_name = $con->getData("SELECT id, position_description FROM positions WHERE id = ".$office_head_name[0]['position_id']);
@@ -76,6 +77,12 @@ foreach($return_logs as $key => $rl) {
 $return_logs[0]['current_date'] = date("jS");
 $return_logs[0]['current_month'] = date("F");
 $return_logs[0]['current_year'] = date("Y");
+
+session_start();
+date_default_timezone_set("Asia/Manila");
+$return_logs[0]['userFullName']=$_SESSION['userFullName'];
+$return_logs[0]['reportDate']=date("m-d-Y h:ia");
+
 
 header("Content-Type: application/json");
 echo json_encode($return_logs[0]);

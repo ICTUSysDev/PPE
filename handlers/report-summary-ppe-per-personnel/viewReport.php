@@ -40,6 +40,12 @@ foreach ($list_of_machinery as $key => $machinery_list)
 
 $employee[0]['total_acquisition_cost'] = $total_acquisition_cost;
 
+session_start();
+// date_default_timezone_set("Asia/Manila");
+$employee[0]['userFullName']=$_SESSION['userFullName'];
+$employee[0]['reportDate']=date("m-d-Y h:ia");
+
+
 
 header("Content-Type: application/json");
 echo json_encode($employee[0]);

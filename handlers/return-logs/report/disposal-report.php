@@ -31,6 +31,8 @@ foreach($disposal_equipment as $key => $mep) {
   $disposal_equipment[$key]['list_no'] = $key+1;
 }
 
+
+
 header("Content-Type: application/json");
 echo json_encode($disposal_equipment);
 

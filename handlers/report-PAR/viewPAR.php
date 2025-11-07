@@ -67,6 +67,10 @@ $array_index=0;
     
 
 
+session_start();
+date_default_timezone_set("Asia/Manila");
+$par[0]['userFullName']=$_SESSION['userFullName'];
+$par[0]['reportDate']=date("m-d-Y h:ia");
 
 
 header("Content-Type: application/json");
