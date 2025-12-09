@@ -86,6 +86,13 @@ foreach ($list_of_furniture_fixture as $key3 => $furniture_list)
     }
 }
 
+
+
+session_start();
+date_default_timezone_set("Asia/Manila");
+$List_of_PARs[0]['userFullName']=$_SESSION['userFullName'];
+$List_of_PARs[0]['reportDate']=date("m-d-Y h:ia");
+
 header("Content-Type: application/json");
 echo json_encode($List_of_PARs);
 

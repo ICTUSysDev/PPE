@@ -3,7 +3,15 @@
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 require_once '../../db.php';
+session_start();
 date_default_timezone_set('Asia/Manila');
+
+
+// date_default_timezone_set("Asia/Manila");
+
+
+
+
 $con = new pdo_db();
 
 $PCEFFOPPE=array();
@@ -59,6 +67,8 @@ if($equipment_type == 'MACHINERY AND EQUIPMENT') {
 
     }
     
+$accountable_officer[0]['userFullName']=$_SESSION['userFullName'];
+$accountable_officer[0]['reportDate']=date("m-d-Y h:ia");
 header("Content-Type: application/json");
 echo json_encode($accountable_officer[0]);
 
@@ -74,7 +84,9 @@ echo json_encode($accountable_officer[0]);
         $accountable_officer[0]['as_of_date'] = date('F d, Y');
 
     }
-    
+
+$accountable_officer[0]['userFullName']=$_SESSION['userFullName'];
+$accountable_officer[0]['reportDate']=date("m-d-Y h:ia");
 header("Content-Type: application/json");
 echo json_encode($accountable_officer[0]);
 
@@ -91,6 +103,8 @@ echo json_encode($accountable_officer[0]);
 
     }
 
+$accountable_officer[0]['userFullName']=$_SESSION['userFullName'];
+$accountable_officer[0]['reportDate']=date("m-d-Y h:ia");
 header("Content-Type: application/json");
 echo json_encode($accountable_officer[0]);
 
@@ -122,7 +136,9 @@ echo json_encode($accountable_officer[0]);
 
     }
 
-    
+
+$accountable_officer[0]['userFullName']=$_SESSION['userFullName'];
+$accountable_officer[0]['reportDate']=date("m-d-Y h:ia");
 header("Content-Type: application/json");
 echo json_encode($accountable_officer[0]);
 
