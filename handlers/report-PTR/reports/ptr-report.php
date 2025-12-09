@@ -57,6 +57,13 @@ foreach($report_transfer as $index => $rt) {
 
 }
 
+
+session_start();
+date_default_timezone_set("Asia/Manila");
+$report_transfer[0]['userFullName']=$_SESSION['userFullName'];
+$report_transfer[0]['reportDate']=date("m-d-Y h:ia");
+
+
 header("Content-Type: application/json");
 echo json_encode($report_transfer[0]);
 

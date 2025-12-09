@@ -14,6 +14,10 @@ if ($pars_equipment!=null){
         $equipment[0]['pars'][$key]=$par_equip;
     }
 }
+session_start();
+date_default_timezone_set("Asia/Manila");
+$equipment[0]['userFullName']=$_SESSION['userFullName'];
+$equipment[0]['reportDate']=date("m-d-Y h:ia");
 
 header("Content-Type: application/json");
 echo json_encode($equipment);

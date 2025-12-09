@@ -110,7 +110,10 @@ foreach ($accountableOfficer as $key => $list)
     
   
 
-
+session_start();
+date_default_timezone_set("Asia/Manila");
+$IIRUP[0]['userFullName']=$_SESSION['userFullName'];
+$IIRUP[0]['reportDate']=date("m-d-Y h:ia");
 
 
 header("Content-Type: application/json");
