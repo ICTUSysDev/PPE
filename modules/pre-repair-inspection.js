@@ -367,16 +367,17 @@ angular.module('app-module',['my-pagination','ui.bootstrap','bootstrap-modal','b
 
 		// Example usage
 		const requestedBy = data.viewWasteMaterialReport.signatories[0].name
-		const requestedByX = 176;
+		const requestedByX = 170;
 		const requestedByY = lastRowY + 16;
 		const requestedBySize = 10;
 		const requestedByDistance = .5;
-
-		addTextWithLine(requestedBy, requestedByX, requestedByY, requestedBySize, requestedByDistance, true);
+		doc.setFont('helvetica','bold');
+		// addTextWithLine(requestedBy, requestedByX, requestedByY, requestedBySize, requestedByDistance, true);
+		doc.text(requestedBy,requestedByX,requestedByY,'center')
 			
 		doc.setFontSize(10);
 		doc.setFont('helvetica','normal');
-		doc.text(data.viewWasteMaterialReport.signatories[0].code, 157, lastRowY+20);
+		doc.text(data.viewWasteMaterialReport.signatories[0].code, requestedByX, lastRowY+20,'center');
 
 		doc.setFontSize(10);
 		doc.setFont('helvetica','normal');
@@ -483,23 +484,25 @@ angular.module('app-module',['my-pagination','ui.bootstrap','bootstrap-modal','b
 		doc.setLineWidth(0.3); // Line width in user units
 		doc.line(73, lastRowY + 88.2, 113, lastRowY + 88.2); // Draw a horizontal line (x, y, x, y)
 
-		doc.setFontSize(8);
+		
 		doc.setFont('helvetica','normal');
 		doc.text("Transferred without cost to", 114, lastRowY+88);
 
 		// Example usage
 		const ao = data.viewWasteMaterialReport.signatories[0].name
-		const aoX = 176;
+		const aoX = 170;
 		const aoY = lastRowY + 84;
 		const aoSize = 10;
 		const aoDistance = .5;
 
-		addTextWithLine(ao, aoX, aoY, aoSize, aoDistance, false);
-
+		// addTextWithLine(ao, aoX, aoY, aoSize, aoDistance, false);
+		doc.setFont('helvetica','bold');
+		doc.setFontSize(10);
+		doc.text(ao,aoX,aoY,'center')
 			
 		doc.setFontSize(10);
 		doc.setFont('helvetica','normal');
-		doc.text(data.viewWasteMaterialReport.signatories[0].code, 157, lastRowY+88);
+		doc.text(data.viewWasteMaterialReport.signatories[0].code, aoX, lastRowY+88,'center');
 			
 		doc.setFontSize(10);
 		doc.setFont('helvetica','normal');

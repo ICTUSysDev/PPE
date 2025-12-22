@@ -1041,16 +1041,20 @@ angular.module('app-module',['my-pagination','ui.bootstrap','bootstrap-modal','b
 				// doc.text(newX, newY, "this "+ scope.datas.current_date +" day of "+ scope.datas.current_month +" "+ scope.datas.current_year +".");
 
 				doc.setFont('helvetica','bold');
-				doc.text("RIO O. GARCIA",155.3, startY_signatories + 18, 'center');
+				var custodian_name=scope.datas.signatories.Prop_Cust[0].signatory_name;
+				var custodian_pos=scope.datas.signatories.Prop_Cust[0].position;
+				doc.text(custodian_name,155.3, startY_signatories + 18, 'center');
 				doc.setFont('helvetica','normal');
 				doc.line(12.75+111, startY_signatories+19, 170+17, startY_signatories+19,'FD');
-				doc.text("Administrative Officer II",155.3, startY_signatories + 22, 'center');
+				doc.text(custodian_pos,155.3, startY_signatories + 22, 'center');
 
 				doc.setFont('helvetica','bold');
-				doc.text("ARVIN C. CAMACHO",155.3, startY_signatories + 30, 'center');
+				var PGSO_name=scope.datas.signatories.PGSO[0].signatory_name;
+				var PGSO_pos=scope.datas.signatories.PGSO[0].position;
+				doc.text(PGSO_name,155.3, startY_signatories + 30, 'center');
 				doc.setFont('helvetica','normal');
 				doc.line(12.75+111, startY_signatories+31, 170+17, startY_signatories+31,'FD');
-				doc.text("Acting Provincial General Services Officer",155.3, startY_signatories + 35, 'center');
+				doc.text(PGSO_pos,155.3, startY_signatories + 35, 'center');
 	
 				doc.setFontSize(8)
 				doc.setFont('helvetica','italic','normal');

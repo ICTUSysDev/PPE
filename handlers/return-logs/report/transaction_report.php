@@ -78,6 +78,11 @@ $return_logs[0]['current_date'] = date("jS");
 $return_logs[0]['current_month'] = date("F");
 $return_logs[0]['current_year'] = date("Y");
 
+
+
+$return_logs[0]['signatories']['PGSO']=$con->getData("SELECT code, CONCAT(first_name,' ',middle_name,'. ',last_name) AS signatory_name, position FROM signatories WHERE code LIKE 'PGSO' ");
+$return_logs[0]['signatories']['Prop_Cust'] = $con->getData("SELECT code, CONCAT(first_name,' ',middle_name,'. ',last_name) AS signatory_name, position FROM signatories WHERE code LIKE 'Property Custodian' ");
+
 session_start();
 date_default_timezone_set("Asia/Manila");
 $return_logs[0]['userFullName']=$_SESSION['userFullName'];
