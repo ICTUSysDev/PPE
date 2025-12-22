@@ -498,7 +498,7 @@ angular.module('app-module',['my-pagination','ui.bootstrap','bootstrap-modal','b
 			
 		doc.setFontSize(10);
 		doc.setFont('helvetica','normal');
-		doc.text('Administrative Officer III', 157, lastRowY+88);
+		doc.text(data.viewWasteMaterialReport.signatories[0].code, 157, lastRowY+88);
 			
 		doc.setFontSize(10);
 		doc.setFont('helvetica','normal');
