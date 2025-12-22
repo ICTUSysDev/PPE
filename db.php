@@ -23,11 +23,17 @@ class pdo_db {
 	
 	function __construct($table = "") {
 		
-		$server = "localhost";
-		$db_name = "ppe-new";
-		$dsn = "mysql:host=$server;dbname=$db_name;charset=utf8";
-		$username = "root";
-		$password = "";
+		// $server = "localhost";
+		// $db_name = "ppe-new";
+		// $dsn = "mysql:host=$server;dbname=$db_name;charset=utf8";
+		// $username = "root";
+		// $password = "";
+
+		             $server = "10.10.2.22:10025";
+                $db_name = "ppe";
+                $dsn = "mysql:host=$server;dbname=$db_name;charset=utf8";
+                $username = "_ppe";
+                $password = "passw0rd";
 
 		$this->db = new PDO($dsn, $username, $password, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 		$this->table = $table;
