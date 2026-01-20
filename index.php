@@ -45,7 +45,7 @@ $page = "dashboard";
 												<div class="fs-4 text-white">
 													<span class="opacity-75">You have</span>
 													<span class="position-relative d-inline-block">
-														<a href="../../demo38/dist/pages/user-profile/projects.html" class="link-white opacity-75-hover fw-bold d-block mb-1">PPE</a>
+														<a href="http://ppe.launion.gov.ph" class="link-white opacity-75-hover fw-bold d-block mb-1">PPEv0.9</a>
 														<span class="position-absolute opacity-50 bottom-0 start-0 border-2 border-body border-bottom w-100"></span>
 													</span>
 													<span class="opacity-75">Details</span>
