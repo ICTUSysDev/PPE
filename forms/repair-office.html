@@ -308,9 +308,9 @@
                         </td>
                         <td>{{ fl.file_size_kb }} kb</td>
                         <td>{{ fl.upload_date }}</td>
-                        <td class="text-end">
-                          <div class="dropdown dropdown-inline mr-4">
-                            <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary" ng-click="app.showDropdownFile(this)" id="showDropdownFile{{fl.id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <td class="text-end">
+                          <div class="btn-group dropstart">
+                            <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                               <span class="svg-icon svg-icon-5 m-0">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <rect x="10" y="10" width="4" height="4" rx="2" fill="currentColor" />
@@ -319,7 +319,7 @@
                                 </svg>
                               </span>
                             </button>
-                            <div class="dropdown-menu menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4 {{ showDropdown }}" id="hideDropdownFile{{fl.id}}">
+                            <div class="dropdown-menu menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-150px py-4">
                               <div class="menu-item px-3">
                                 <a href="#" class="menu-link px-3" ng-click="app.downloadFile(this, fl.id)">Download File</a>
                               </div>
@@ -330,7 +330,7 @@
                                 <a href="#" class="menu-link text-danger px-3" data-kt-filemanager-table-filter="delete_row" ng-click="app.deleteFile(this, fl)">Delete</a>
                               </div>
                             </div>
-                        </div>
+                          </div>
                         </td>
                       </tr>
                     </tbody>

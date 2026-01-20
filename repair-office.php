@@ -59,7 +59,7 @@ $dropdown = "operation";
 					<nav>
 						<?php require_once 'components/sidebar/sidebar.html'?>
 					</nav>
-					<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+					<div class="app-mainssss flex-column flex-row-fluid" id="kt_app_mains">
 						<div class="d-flex flex-column flex-column-fluid">
 							<div id="content"> </div> <!-- DISPLAY HERE LIST/FORM-->
 						</div>
