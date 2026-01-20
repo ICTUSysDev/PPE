@@ -29,11 +29,11 @@ class pdo_db {
 		// $username = "root";
 		// $password = "";
 
-		             $server = "10.10.2.22:10025";
+		        $server = "10.10.2.18";
                 $db_name = "ppe";
                 $dsn = "mysql:host=$server;dbname=$db_name;charset=utf8";
                 $username = "_ppe";
-                $password = "passw0rd";
+                $password = "{26-gKfJR940";
 
 		$this->db = new PDO($dsn, $username, $password, array(PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 		$this->table = $table;

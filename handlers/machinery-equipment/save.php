@@ -67,8 +67,12 @@ if ($machinery_equipment['id']) {
 	$machinery_equipment['equipment_condition'] = "SERVICEABLE";
 	$machinery_equipment['property_number'] = $property_number_incremental_result;
 	$machinery_equipment['acquisition_date'] = $new_date;
+
 	$machinery_equipment = $con->insertObj($machinery_equipment);
 	$id = $con->insertId;
+
+	// 		print_r($machinery_equipment);
+	// die();
 
 	$con->table = "property_number";
 	$property_number = array (
