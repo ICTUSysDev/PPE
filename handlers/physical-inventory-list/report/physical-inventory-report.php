@@ -49,6 +49,13 @@ $datas =  array_merge(
   $physical_inventory
 );
 
+
+
+date_default_timezone_set("Asia/Manila");
+$datas['reportDetail']['userFullName']=$_SESSION['userFullName'];
+$datas['reportDetail']['reportDate']=date("m-d-Y h:ia");
+
+
 echo json_encode($datas);
 
 ?>
